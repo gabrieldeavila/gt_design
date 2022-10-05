@@ -1,9 +1,13 @@
 import PropTypes from 'prop-types';
 import { ThemeProvider } from 'styled-components';
+import GTContainer from '../gtContainer';
 
 function GtDesign({ theme, children }) {
-  console.log(theme);
-  return <ThemeProvider theme={theme}>{children}</ThemeProvider>;
+  return (
+    <ThemeProvider theme={theme}>
+      <GTContainer>{children}</GTContainer>
+    </ThemeProvider>
+  );
 }
 
 export default GtDesign;
@@ -14,5 +18,5 @@ GtDesign.propTypes = {
 };
 
 GtDesign.defaultProps = {
-  theme: { primary: 'red', secundary: 'blue' }
+  theme: { primary: '#FFFFFF', secundary: '#F5F5F5', contrast: '#0C0404' }
 };

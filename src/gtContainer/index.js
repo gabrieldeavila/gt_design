@@ -1,9 +1,9 @@
 import styled from 'styled-components';
 import { color } from 'styled-system';
 
-const Container = styled.div`
+const GTContainer = styled.div`
   ${color}
-  background: red;
+  background: ${(props) => props.theme.primary};
   position: absolute;
   top: 0;
   left: 0;
@@ -11,4 +11,4 @@ const Container = styled.div`
   bottom: 0;
 `;
 
-export default Container;
+export default GTContainer;
