@@ -5,8 +5,7 @@ const GlobalStyle = createGlobalStyle`
   ${reset}
  
   body {
-    font-family: 'Inter', sans-serif;
-    background: ${(props) => props.theme.primary};
+    font-family: 'Kanit', sans-serif;
   }
 `;
 

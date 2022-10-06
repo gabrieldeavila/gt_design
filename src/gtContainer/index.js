@@ -3,7 +3,7 @@ import { color } from 'styled-system';
 
 const GTContainer = styled.div`
   ${color}
-  background: ${(props) => props.theme.primary};
+  background: ${(props) => props.theme.secundary};
   position: absolute;
   top: 0;
   left: 0;
