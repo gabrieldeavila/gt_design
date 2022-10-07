@@ -2,6 +2,7 @@ import React from 'react';
 import GlobalStyle from './global/style';
 import GtDesign from './gtDesign';
 import Navbar from './navbar/index';
+import Symbol from './symbol';
 
 function App() {
   return (
@@ -33,6 +34,21 @@ function App() {
               </Navbar.OptionWrapper>
             </Navbar.Options>
           </Navbar.Left>
+
+          <Navbar.Right>
+            <Navbar.Options>
+              <Navbar.OptionWrapper>
+                <Symbol.Container>
+                  <Symbol.Text>G</Symbol.Text>
+                </Symbol.Container>
+              </Navbar.OptionWrapper>
+              <Navbar.OptionWrapper>
+                <Symbol.Container>
+                  <Symbol.Image src="https://thispersondoesnotexist.com/image" />
+                </Symbol.Container>
+              </Navbar.OptionWrapper>
+            </Navbar.Options>
+          </Navbar.Right>
         </Navbar.Content>
       </Navbar.Wrapper>
       <GlobalStyle />

@@ -21,6 +21,7 @@ const NavbarContent = styled.div`
   padding: 1.5rem;
   display: flex;
   align-items: center;
+  justify-content: space-between;
   top: 0;
   left: 0;
   bottom: 0;
@@ -97,6 +98,9 @@ const NavbarOption = styled.div`
   }
 `;
 
+const NavbarRight = styled.div`
+`;
+
 export default {
   Wrapper: NavbarWrapper,
   Content: NavbarContent,
@@ -106,5 +110,6 @@ export default {
   Option: NavbarOption,
   OptionWrapper: NavbarOptionWrapper,
   Text: NavbarText,
-  Popup: NavbarPopup
+  Popup: NavbarPopup,
+  Right: NavbarRight
 };
