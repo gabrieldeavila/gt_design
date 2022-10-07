@@ -1,3 +1,4 @@
+import { opacify } from 'polished';
 import styled from 'styled-components/macro';
 import { color, space, flexbox } from 'styled-system';
 
@@ -6,7 +7,7 @@ const NavbarWrapper = styled.nav`
   position: relative;
   background: ${(props) => props.theme.primary};
   box-shadow: 0 0 0.5rem 0.1rem rgba(0, 0, 0, 0.1);
-  padding: 1rem 1.5rem;
+  padding: 0.5rem 1.5rem;
   ${color}
   ${space}
   ${flexbox}
@@ -48,13 +49,43 @@ const NavbarOptions = styled.div`
   gap: 1rem;
 `;
 
+const NavbarText = styled.p`
+  user-select: none;
+  cursor: pointer;
+  padding: 1rem;
+  transition: all 0.2s ease-in-out;
+`;
+
 const NavbarPopup = styled.div`
   position: absolute;
-  min-width: 15rem ;
+  min-width: 15rem;
   background: ${(props) => props.theme.secundary};
   box-shadow: 0 0 0.5rem 0.1rem rgba(0, 0, 0, 0.1);
   border-radius: 0.5rem;
   display: none;
+  overflow: hidden;
+  margin-top: 0.5rem;
+  gap: 0.5rem;
+  flex-direction: column;
+
+  ${NavbarText}:hover {
+    background: ${(props) => opacify(0.1, props.theme.primary)};
+  }
+`;
+
+const NavbarOptionWrapper = styled.div`
+  position: relative;
+
+  &:hover ${NavbarPopup} {
+    display: flex;
+  }
+
+  &::after {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 0.5rem;
+  }
 `;
 
 const NavbarOption = styled.div`
@@ -64,16 +95,6 @@ const NavbarOption = styled.div`
   &:hover {
     background: ${(props) => props.theme.secundary};
   }
-
-  &:hover ${NavbarPopup} {
-    display: block;
-  }
-`;
-
-const NavbarText = styled.p`
-  user-select: none;
-  cursor: pointer;
-  padding: 1rem;
 `;
 
 export default {
@@ -83,6 +104,7 @@ export default {
   Title: NavbarTitle,
   Options: NavbarOptions,
   Option: NavbarOption,
+  OptionWrapper: NavbarOptionWrapper,
   Text: NavbarText,
   Popup: NavbarPopup
 };
