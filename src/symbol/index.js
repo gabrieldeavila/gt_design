@@ -16,6 +16,11 @@ const SymbolContainer = styled.div`
   border-radius: 1.5rem;
   cursor: pointer;
   user-select: none;
+  position: relative;
+
+  &:hover {
+    opacity: 0.5 ;
+  }
 `;
 
 const SymbolText = styled.p`
@@ -33,5 +38,5 @@ export default {
   Wrapper: SymbolWrapper,
   Container: SymbolContainer,
   Text: SymbolText,
-  Image: SymbolImage,
+  Image: SymbolImage
 };
