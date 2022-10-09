@@ -1,13 +1,15 @@
 import { opacify } from 'polished';
 import styled from 'styled-components/macro';
 import { color, space, flexbox } from 'styled-system';
+import shadows from '../utils/shadows';
+import transitions from '../utils/transitions';
 
 const NavbarWrapper = styled.nav`
   min-height: 3rem;
   position: relative;
   background: ${(props) => props.theme.primary};
-  box-shadow: 0 0 0.5rem 0.1rem rgba(0, 0, 0, 0.1);
   padding: 0.5rem 1.5rem;
+  ${shadows.basic}
   ${color}
   ${space}
   ${flexbox}
@@ -53,21 +55,26 @@ const NavbarOptions = styled.div`
 const NavbarText = styled.p`
   user-select: none;
   cursor: pointer;
+  height: fit-content;
   padding: 1rem;
-  transition: all 0.2s ease-in-out;
+  ${transitions.basic}
 `;
 
 const NavbarPopup = styled.div`
   position: absolute;
   min-width: 15rem;
   background: ${(props) => props.theme.secundary};
-  box-shadow: 0 0 0.5rem 0.1rem rgba(0, 0, 0, 0.1);
   border-radius: 0.5rem;
-  display: none;
   overflow: hidden;
   margin-top: 0.5rem;
   gap: 0.5rem;
   flex-direction: column;
+  transform: translateY(-0.5rem);
+  z-index: 10;
+  display: none;
+  opacity: 0;
+  ${shadows.basic}
+  ${transitions.basic}
 
   ${NavbarText}:hover {
     background: ${(props) => opacify(0.1, props.theme.primary)};
@@ -78,7 +85,9 @@ const NavbarOptionWrapper = styled.div`
   position: relative;
 
   &:hover ${NavbarPopup} {
-    display: flex;
+    transform: translateY(0);
+    display: flex; // TO DO: FIX THIS
+    opacity: 1;
   }
 
   &::after {
@@ -91,15 +100,14 @@ const NavbarOptionWrapper = styled.div`
 
 const NavbarOption = styled.div`
   border-radius: 0.5rem;
-  transition: all 0.2s ease-in-out;
+  ${transitions.basic}
 
   &:hover {
     background: ${(props) => props.theme.secundary};
   }
 `;
 
-const NavbarRight = styled.div`
-`;
+const NavbarRight = styled.div``;
 
 export default {
   Wrapper: NavbarWrapper,

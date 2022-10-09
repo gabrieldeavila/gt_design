@@ -29,7 +29,7 @@ function useOnClickOutside(ref, avoidComponents, handler) {
       document.removeEventListener('mousedown', listener);
       document.removeEventListener('touchstart', listener);
     };
-  }, [ref, handler, avoidComponents]);
+  }, [ref, handler, avoidComponents, listener]);
 }
 
 export default useOnClickOutside;

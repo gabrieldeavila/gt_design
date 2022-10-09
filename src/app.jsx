@@ -1,4 +1,5 @@
 import React from 'react';
+import LoaderEx from './examples/loader';
 import SymbolPopup from './examples/popup';
 import GlobalStyle from './global/style';
 import GtDesign from './gtDesign';
@@ -50,6 +51,50 @@ function App() {
           </Navbar.Right>
         </Navbar.Content>
       </Navbar.Wrapper>
+
+      <div>aaaa</div>
+      <div>aaaa</div>
+      <div>aaaa</div>
+      <div>aaaa</div>
+      <div>aaaa</div>
+      <div>aaaa</div>
+      <div>aaaa</div>
+      <div>aaaa</div>
+      <div>aaaa</div>
+      <div>aaaa</div>
+      <div>aaaa</div>
+      <div>aaaa</div>
+      <div>aaaa</div>
+      <div>aaaa</div>
+      <div>aaaa</div>
+      <div>aaaa</div>
+      <div>aaaa</div>
+      <div>aaaa</div>
+      <div>aaaa</div>
+      <div>aaaa</div>
+      <div>aaaa</div>
+      <div>aaaa</div>
+      <div>aaaa</div>
+      <div>aaaa</div>
+      <div>aaaa</div>
+      <div>aaaa</div>
+      <div>aaaa</div>
+      <div>aaaa</div>
+      <div>aaaa</div>
+      <div>aaaa</div>
+      <div>aaaa</div>
+      <div>aaaa</div>
+      <div>aaaa</div>
+      <div>aaaa</div>
+      <div>aaaa</div>
+      <div>aaaa</div>
+      <div>aaaa</div>
+      <div>aaaa</div>
+      <div>aaaa</div>
+      <div>aaaa</div>
+      <div>aaaa</div>
+
+      <LoaderEx />
       <GlobalStyle />
     </GtDesign>
   );

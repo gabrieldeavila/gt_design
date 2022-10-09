@@ -4,13 +4,14 @@ import PropTypes from 'prop-types';
 import useEaseClose from '../hooks/useEaseClose';
 import animations from '../utils/animations';
 import useOnClickOutside from '../hooks/useOnClickOutside';
+import shadows from '../utils/shadows';
 
 const PopupWrapperStyled = styled.div`
   margin-top: 0.5rem;
   position: absolute;
   background: ${(props) => props.theme.secundary};
   color: ${(props) => props.theme.contrast};
-  box-shadow: 0 0 0.5rem 0.1rem rgba(0, 0, 0, 0.1);
+  ${shadows.basic}
   border-radius: 0.25rem;
   min-width: 15rem;
   min-height: 7rem;
