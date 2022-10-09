@@ -1,6 +1,10 @@
 import { transparentize } from 'polished';
 import styled from 'styled-components';
 
+const SymbolWrapper = styled.div`
+  position: relative;
+`;
+
 const SymbolContainer = styled.div`
   display: flex;
   justify-content: center;
@@ -26,6 +30,7 @@ const SymbolImage = styled.img`
 `;
 
 export default {
+  Wrapper: SymbolWrapper,
   Container: SymbolContainer,
   Text: SymbolText,
   Image: SymbolImage,
