@@ -19,12 +19,12 @@ const getSize = (size) => {
 };
 
 const Loader = styled.div`
-  margin: 1rem;
+  margin: 1rem 0;
   border-radius: 50%;
   width: ${(props) => getSize(props.size).wh};
   height: ${(props) => getSize(props.size).wh};
   border: ${(props) => getSize(props.size).border} solid ${(props) => props.theme.contrast};
-  border-top: ${(props) => getSize(props.size).border} solid ${(props) => props.theme.primary};
+  border-top: ${(props) => getSize(props.size).border} solid transparent;
   animation: spin 1s linear infinite;
 
   @keyframes spin {

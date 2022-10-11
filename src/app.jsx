@@ -1,4 +1,6 @@
 import React from 'react';
+import Box from './box';
+import Content from './Content';
 import LoaderEx from './examples/loader';
 import SymbolPopup from './examples/popup';
 import GlobalStyle from './global/style';
@@ -10,7 +12,7 @@ function App() {
   return (
     <GtDesign>
       <Navbar.Wrapper>
-        <Navbar.Content>
+        <Navbar.Container>
           <Navbar.Left>
             <Navbar.Title>Gt Design</Navbar.Title>
             <Navbar.Options>
@@ -49,52 +51,27 @@ function App() {
               </Navbar.OptionWrapper>
             </Navbar.Options>
           </Navbar.Right>
-        </Navbar.Content>
+        </Navbar.Container>
       </Navbar.Wrapper>
 
-      <div>aaaa</div>
-      <div>aaaa</div>
-      <div>aaaa</div>
-      <div>aaaa</div>
-      <div>aaaa</div>
-      <div>aaaa</div>
-      <div>aaaa</div>
-      <div>aaaa</div>
-      <div>aaaa</div>
-      <div>aaaa</div>
-      <div>aaaa</div>
-      <div>aaaa</div>
-      <div>aaaa</div>
-      <div>aaaa</div>
-      <div>aaaa</div>
-      <div>aaaa</div>
-      <div>aaaa</div>
-      <div>aaaa</div>
-      <div>aaaa</div>
-      <div>aaaa</div>
-      <div>aaaa</div>
-      <div>aaaa</div>
-      <div>aaaa</div>
-      <div>aaaa</div>
-      <div>aaaa</div>
-      <div>aaaa</div>
-      <div>aaaa</div>
-      <div>aaaa</div>
-      <div>aaaa</div>
-      <div>aaaa</div>
-      <div>aaaa</div>
-      <div>aaaa</div>
-      <div>aaaa</div>
-      <div>aaaa</div>
-      <div>aaaa</div>
-      <div>aaaa</div>
-      <div>aaaa</div>
-      <div>aaaa</div>
-      <div>aaaa</div>
-      <div>aaaa</div>
-      <div>aaaa</div>
-
-      <LoaderEx />
+      <Content.Wrapper>
+        <Content.Container>
+          <Box.Group>
+            {[1, 2, 3, 4].map(() => (
+              <Box.Wrapper width="50">
+                <Box.Container>
+                  oie
+                  <LoaderEx />
+                  <LoaderEx />
+                  <LoaderEx />
+                  <LoaderEx />
+                  último
+                </Box.Container>
+              </Box.Wrapper>
+            ))}
+          </Box.Group>
+        </Content.Container>
+      </Content.Wrapper>
       <GlobalStyle />
     </GtDesign>
   );

@@ -6,7 +6,9 @@ import transitions from '../utils/transitions';
 
 const NavbarWrapper = styled.nav`
   min-height: 3rem;
-  position: relative;
+  position: fixed;
+  width: -webkit-fill-available;
+  z-index: 1100;
   background: ${(props) => props.theme.primary};
   padding: 0.5rem 1.5rem;
   ${shadows.basic}
@@ -14,12 +16,16 @@ const NavbarWrapper = styled.nav`
   ${space}
   ${flexbox}
 
+  backdrop-filter: blur(10px);
+  opacity: 0.9;
+
+
   p {
     margin: 0;
   }
 `;
 
-const NavbarContent = styled.div`
+const NavbarContainer = styled.div`
   padding: 1.5rem;
   display: flex;
   align-items: center;
@@ -33,11 +39,30 @@ const NavbarContent = styled.div`
   ${space}
   ${flexbox}
 `;
+const NavbarOptions = styled.div`
+  display: flex;
+  gap: 1rem;
+`;
 
 const NavbarLeft = styled.div`
   display: flex;
   align-items: center;
   gap: 2.5rem;
+
+  ${NavbarOptions} {
+    @media (max-width: 768px) {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      display: flex;
+      background: ${(props) => props.theme.primary};
+      padding: 0.5rem;
+      justify-content: center;
+      z-index: 1004;
+    }
+
+  }
 `;
 
 const NavbarTitle = styled.h1`
@@ -45,11 +70,6 @@ const NavbarTitle = styled.h1`
   font-weight: 800;
   font-size: 1.5rem;
   color: ${(props) => props.theme.contrast};
-`;
-
-const NavbarOptions = styled.div`
-  display: flex;
-  gap: 1rem;
 `;
 
 const NavbarText = styled.p`
@@ -63,8 +83,8 @@ const NavbarText = styled.p`
 const NavbarPopup = styled.div`
   position: absolute;
   min-width: 15rem;
-  background: ${(props) => props.theme.secundary};
-  border-radius: 0.5rem;
+  background: ${(props) => props.theme.primary};
+  border-radius: 0.25rem;
   overflow: hidden;
   margin-top: 0.5rem;
   gap: 0.5rem;
@@ -77,7 +97,7 @@ const NavbarPopup = styled.div`
   ${transitions.basic}
 
   ${NavbarText}:hover {
-    background: ${(props) => opacify(0.1, props.theme.primary)};
+    background: ${(props) => opacify(0.1, props.theme.secundary)};
   }
 `;
 
@@ -111,7 +131,7 @@ const NavbarRight = styled.div``;
 
 export default {
   Wrapper: NavbarWrapper,
-  Content: NavbarContent,
+  Container: NavbarContainer,
   Left: NavbarLeft,
   Title: NavbarTitle,
   Options: NavbarOptions,
