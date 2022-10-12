@@ -1,4 +1,4 @@
-import { opacify } from 'polished';
+import { opacify, transparentize } from 'polished';
 import styled from 'styled-components/macro';
 import { color, space, flexbox } from 'styled-system';
 import shadows from '../utils/shadows';
@@ -9,16 +9,14 @@ const NavbarWrapper = styled.nav`
   position: fixed;
   width: -webkit-fill-available;
   z-index: 1100;
-  background: ${(props) => props.theme.primary};
+  /* add transparecy to the background */
+  background: ${(props) => transparentize(0.5, props.theme.primary)};
   padding: 0.5rem 1.5rem;
   ${shadows.basic}
   ${color}
   ${space}
   ${flexbox}
-
   backdrop-filter: blur(10px);
-  opacity: 0.9;
-
 
   p {
     margin: 0;
@@ -61,7 +59,6 @@ const NavbarLeft = styled.div`
       justify-content: center;
       z-index: 1004;
     }
-
   }
 `;
 
