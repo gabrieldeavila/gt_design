@@ -10,6 +10,7 @@ const GlobalStyle = createGlobalStyle`
 
   body {
     font-family: 'Kanit', sans-serif;
+    background: ${(props) => props.theme.secundary};
   }
 `;
 

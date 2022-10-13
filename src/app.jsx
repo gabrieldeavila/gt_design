@@ -1,59 +1,18 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Box from './box';
 import Content from './Content';
 import LoaderEx from './examples/loader';
-import SymbolPopup from './examples/popup';
 import GlobalStyle from './global/style';
 import GtDesign from './gtDesign';
-import Navbar from './navbar/index';
-import Symbol from './symbol';
+import GTModal from './modal/gt';
+import GTNavbar from './navbar/gt';
 
 function App() {
+  const [showModal, setShowModal] = useState(false);
+
   return (
     <GtDesign>
-      <Navbar.Wrapper>
-        <Navbar.Container>
-          <Navbar.Left>
-            <Navbar.Title>Gt Design</Navbar.Title>
-            <Navbar.Options>
-              <Navbar.OptionWrapper>
-                <Navbar.Option>
-                  <Navbar.Text>Home</Navbar.Text>
-                  <Navbar.Popup>
-                    <Navbar.Text>Home</Navbar.Text>
-                    <Navbar.Text>Home</Navbar.Text>
-                    <Navbar.Text>Home</Navbar.Text>
-                  </Navbar.Popup>
-                </Navbar.Option>
-              </Navbar.OptionWrapper>
-              <Navbar.OptionWrapper>
-                <Navbar.Option>
-                  <Navbar.Text>Projects</Navbar.Text>
-                </Navbar.Option>
-              </Navbar.OptionWrapper>
-              <Navbar.OptionWrapper>
-                <Navbar.Option>
-                  <Navbar.Text>About</Navbar.Text>
-                </Navbar.Option>
-              </Navbar.OptionWrapper>
-            </Navbar.Options>
-          </Navbar.Left>
-
-          <Navbar.Right>
-            <Navbar.Options>
-              <Navbar.OptionWrapper>
-                <Symbol.Container>
-                  <Symbol.Text>G</Symbol.Text>
-                </Symbol.Container>
-              </Navbar.OptionWrapper>
-              <Navbar.OptionWrapper>
-                <SymbolPopup />
-              </Navbar.OptionWrapper>
-            </Navbar.Options>
-          </Navbar.Right>
-        </Navbar.Container>
-      </Navbar.Wrapper>
-
+      <GTNavbar showModal={showModal} />
       <Content.Wrapper>
         <Content.Container>
           <Box.Group>
@@ -65,11 +24,16 @@ function App() {
                   <LoaderEx />
                   <LoaderEx />
                   <LoaderEx />
+                  <button type="submit" onClick={() => setShowModal(true)}>
+                    clique p/ abrir modal
+                  </button>
                   último
                 </Box.Container>
               </Box.Wrapper>
             ))}
           </Box.Group>
+
+          <GTModal show={showModal} setShow={setShowModal} />
         </Content.Container>
       </Content.Wrapper>
       <GlobalStyle />

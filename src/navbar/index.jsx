@@ -9,7 +9,6 @@ const NavbarWrapper = styled.nav`
   position: fixed;
   width: -webkit-fill-available;
   z-index: 1100;
-  /* add transparecy to the background */
   background: ${(props) => transparentize(0.5, props.theme.primary)};
   padding: 0.5rem 1.5rem;
   ${shadows.basic}

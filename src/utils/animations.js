@@ -25,6 +25,27 @@ const easeOpenClose = css`
   }
 `;
 
+const easeOpacity = css`
+  @keyframes opacity {
+    0% {
+      opacity: 0;
+    }
+    100% {
+      opacity: 1;
+    }
+  }
+
+  @keyframes opacityReverse {
+    0% {
+      opacity: 1;
+    }
+    100% {
+      opacity: 0;
+    }
+  }
+`;
+
 export default {
-  easeOpenClose
+  easeOpenClose,
+  easeOpacity
 };
