@@ -9,7 +9,7 @@ import shadows from '../utils/shadows';
 const PopupWrapperStyled = styled.div`
   margin-top: 0.5rem;
   position: absolute;
-  background: ${(props) => props.theme.secundary};
+  background: ${(props) => props.theme.primary};
   color: ${(props) => props.theme.contrast};
   ${shadows.basic}
   border-radius: 0.25rem;

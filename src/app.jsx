@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import Box from './box';
+import Button from './button';
 import Content from './Content';
 import LoaderEx from './examples/loader';
 import GlobalStyle from './global/style';
@@ -24,9 +25,14 @@ function App() {
                   <LoaderEx />
                   <LoaderEx />
                   <LoaderEx />
-                  <button type="submit" onClick={() => setShowModal(true)}>
-                    clique p/ abrir modal
-                  </button>
+                  <Button.Wrapper justifyContent="center">
+                    <Button.Normal type="submit" onClick={() => setShowModal(true)}>
+                      Clique p/ abrir modal
+                    </Button.Normal>
+                    <Button.Contrast type="submit" onClick={() => setShowModal(true)}>
+                      Clique p/ abrir modal
+                    </Button.Contrast>
+                  </Button.Wrapper>
                   último
                 </Box.Container>
               </Box.Wrapper>

@@ -1,12 +1,17 @@
 import { css } from 'styled-components';
 
+const basicTransitionSecs = 0.2;
+
 const basic = css`
-  transition: all 0.2s ease-in-out;
+  transition: all ${basicTransitionSecs}s ease-in-out;
 `;
 
-const basicTransitionSecs = 0.2;
+const linear = css`
+  transition: all ${basicTransitionSecs}s linear;
+`;
 
 export default {
   basic,
+  linear,
   basicTransitionSecs
 };
