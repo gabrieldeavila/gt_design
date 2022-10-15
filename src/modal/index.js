@@ -1,7 +1,11 @@
+/* eslint-disable implicit-arrow-linebreak */
+/* eslint-disable no-confusing-arrow */
 import styled from 'styled-components';
 import { transparentize } from 'polished';
 import flex from '../utils/flex';
 import animations from '../utils/animations';
+import hovers from '../utils/hovers';
+import transitions from '../utils/transitions';
 
 const ModalContent = styled.div`
   position: fixed;
@@ -12,7 +16,8 @@ const ModalContent = styled.div`
   bottom: 0;
   right: 0;
   ${animations.easeOpacity}
-  animation: ${(props) => (props.open ? 'opacity 0.2s ease-in-out forwards' : 'opacityReverse 0.2s ease-in-out forwards')};
+  animation: ${(props) =>
+    props.open ? 'opacity 0.2s ease-in-out forwards' : 'opacityReverse 0.2s ease-in-out forwards'};
   ${flex.alignCenter}
 `;
 
@@ -21,9 +26,10 @@ const ModalContainer = styled.div`
 `;
 
 const ModalWrapper = styled.div`
-  min-width: 25vw;
+  min-width: 35vw;
   ${animations.easeOpenClose}
-  animation: ${(props) => (props.open ? 'popup 0.2s ease-in-out forwards' : 'popupReverse 0.2s ease-in-out forwards')};
+  animation: ${(props) =>
+    props.open ? 'popup 0.2s ease-in-out forwards' : 'popupReverse 0.2s ease-in-out forwards'};
   background: ${(props) => props.theme.primary};
   border-radius: 0.25rem;
   overflow: hidden;
@@ -33,19 +39,24 @@ const ModalHeader = styled.div`
   ${flex.justifyBetween}
 `;
 
-const ModalTitle = styled.h1`
-  font-size: 1.5rem;
-  font-weight: 500;
-  color: ${(props) => props.theme.contrast};
+const ModalClose = styled.div`
+  cursor: pointer;
+
+  ${transitions.linear}
+  ${hovers.scaleTransYOpacity}
 `;
 
-const ModalClose = styled.div``;
+const ModalMain = styled.main`
+  margin: 1.5rem 0;
+  padding: 2rem 0;
+  border-top: 1px solid ${(props) => transparentize(0.8, props.theme.contrast)};
+`;
 
 export default {
   Content: ModalContent,
   Wrapper: ModalWrapper,
   Container: ModalContainer,
   Header: ModalHeader,
-  Title: ModalTitle,
-  Close: ModalClose
+  Close: ModalClose,
+  Main: ModalMain
 };

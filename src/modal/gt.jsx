@@ -4,6 +4,7 @@ import * as Icon from 'react-feather';
 import PropTypes from 'prop-types';
 import Modal from '.';
 import useOnClickOutside from '../hooks/useOnClickOutside';
+import Text from '../text';
 
 function GTModal({ show, setShow }) {
   const [open, setOpen] = useState(true);
@@ -35,11 +36,15 @@ function GTModal({ show, setShow }) {
       <Modal.Wrapper ref={ref} open={open}>
         <Modal.Container>
           <Modal.Header>
-            <Modal.Title>Hehehe</Modal.Title>
+            <Text.H1>Hehehe</Text.H1>
             <Modal.Close onClick={handleClose}>
               <Icon.X />
             </Modal.Close>
           </Modal.Header>
+
+          <Modal.Main>
+            <Text.P>hehehe</Text.P>
+          </Modal.Main>
         </Modal.Container>
       </Modal.Wrapper>
     </Modal.Content>

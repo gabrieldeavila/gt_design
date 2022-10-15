@@ -1,6 +1,7 @@
 import styled, { css } from 'styled-components';
 import { flexbox, space } from 'styled-system';
 import flex from '../utils/flex';
+import hovers from '../utils/hovers';
 import shadows from '../utils/shadows';
 import transitions from '../utils/transitions';
 
@@ -17,11 +18,7 @@ const resetBtn = css`
   border-radius: 0.25rem;
 
   ${transitions.linear}
-
-  &:hover {
-    transform: scale(1.05) translateY(-0.25rem);
-    opacity: 0.8;
-  }
+  ${hovers.scaleTransYOpacity}
 `;
 
 const ButtonWrapper = styled.div`

@@ -1,6 +1,6 @@
-import { opacify, transparentize } from 'polished';
+import { darken, transparentize } from 'polished';
 import styled from 'styled-components/macro';
-import { color, space, flexbox } from 'styled-system';
+import { color, flexbox, space } from 'styled-system';
 import shadows from '../utils/shadows';
 import transitions from '../utils/transitions';
 
@@ -93,7 +93,7 @@ const NavbarPopup = styled.div`
   ${transitions.basic}
 
   ${NavbarText}:hover {
-    background: ${(props) => opacify(0.1, props.theme.secundary)};
+    background: ${(props) => darken(0.05, props.theme.secundary)};
   }
 `;
 
@@ -108,7 +108,7 @@ const NavbarOptionWrapper = styled.div`
 
   &::after {
     content: '';
-    position: absolute;
+    position: absolute;   
     width: 100%;
     height: 0.5rem;
   }
