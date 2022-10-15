@@ -18,5 +18,10 @@ GtDesign.propTypes = {
 };
 
 GtDesign.defaultProps = {
-  theme: { primary: '#FFFFFF', secundary: '#fefefa', contrast: '#000000' }
+  theme: {
+    primary: '#FFFFFF',
+    secundary: '#fefefa',
+    contrast: '#000000',
+    backgroundHover: '#f5f5f5'
+  }
 };

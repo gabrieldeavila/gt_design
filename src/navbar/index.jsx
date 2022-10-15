@@ -1,6 +1,9 @@
-import { darken, transparentize } from 'polished';
+/* eslint-disable implicit-arrow-linebreak */
+/* eslint-disable no-confusing-arrow */
+import { transparentize } from 'polished';
 import styled from 'styled-components/macro';
 import { color, flexbox, space } from 'styled-system';
+import animations from '../utils/animations';
 import shadows from '../utils/shadows';
 import transitions from '../utils/transitions';
 
@@ -76,42 +79,35 @@ const NavbarText = styled.p`
   ${transitions.basic}
 `;
 
-const NavbarPopup = styled.div`
+const NavbarPopupWrapper = styled.div`
   position: absolute;
+  width: 100%;
+  height: 0.35rem;
+`;
+
+const NavbarPopup = styled.div`
+  margin-top: 0.35rem;
+  padding-top: 0.35rem;
   min-width: 15rem;
   background: ${(props) => props.theme.primary};
   border-radius: 0.25rem;
-  overflow: hidden;
-  margin-top: 0.5rem;
   gap: 0.5rem;
   flex-direction: column;
-  transform: translateY(-0.5rem);
   z-index: 10;
-  display: none;
-  opacity: 0;
   ${shadows.basic}
   ${transitions.basic}
 
+  animation: ${(props) =>
+    props.open ? 'popup 0.2s ease-in-out forwards' : 'popupReverse 0.2s ease-in-out forwards'};
+  ${animations.easeOpenClose}
+
   ${NavbarText}:hover {
-    background: ${(props) => darken(0.05, props.theme.secundary)};
+    background: ${(props) => props.theme.backgroundHover};
   }
 `;
 
 const NavbarOptionWrapper = styled.div`
   position: relative;
-
-  &:hover ${NavbarPopup} {
-    transform: translateY(0);
-    display: flex; // TO DO: FIX THIS
-    opacity: 1;
-  }
-
-  &::after {
-    content: '';
-    position: absolute;   
-    width: 100%;
-    height: 0.5rem;
-  }
 `;
 
 const NavbarOption = styled.div`
@@ -119,7 +115,7 @@ const NavbarOption = styled.div`
   ${transitions.basic}
 
   &:hover {
-    background: ${(props) => props.theme.secundary};
+    background: ${(props) => props.theme.backgroundHover};
   }
 `;
 
@@ -134,6 +130,7 @@ export default {
   Option: NavbarOption,
   OptionWrapper: NavbarOptionWrapper,
   Text: NavbarText,
+  PopupWrapper: NavbarPopupWrapper,
   Popup: NavbarPopup,
   Right: NavbarRight
 };
