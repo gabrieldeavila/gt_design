@@ -11,14 +11,13 @@ function GTNavbar({ showModal }) {
   const wrapperStyle = showModal && 14;
   const oldScroll = useRef(0);
 
-  // when scrolls down, add a class to the navbar
+  // when scrolls down, hide the navbar, when scrolls up, show the navbar
   const [showNavbar, setShowNavbar] = useState(true);
   const handleScroll = useCallback(() => {
     if (window.scrollY > oldScroll.current) {
-      setShowNavbar(true);
-    } else {
-      console.log('tem q mostrar o navbar');
       setShowNavbar(false);
+    } else {
+      setShowNavbar(true);
     }
 
     oldScroll.current = window.scrollY;

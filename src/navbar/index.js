@@ -21,7 +21,7 @@ const NavbarWrapper = styled.nav`
   ${flexbox}
   backdrop-filter: blur(10px);
   animation: ${(props) =>
-    !props.show ? 'show 0.2s ease-in-out forwards' : 'showReverse 0.2s ease-in-out forwards'};
+    props.show ? 'show 0.2s ease-in-out forwards' : 'showReverse 0.2s ease-in-out forwards'};
   ${animations.easeShow}
 
   p {
