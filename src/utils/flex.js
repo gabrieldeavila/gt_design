@@ -6,6 +6,13 @@ const alignCenter = css`
   justify-content: center;
 `;
 
+const alignCenterCol = css`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+`;
+
 const justifyBetween = css`
   display: flex;
   justify-content: space-between;
@@ -24,6 +31,7 @@ const column = css`
 
 export default {
   alignCenter,
+  alignCenterCol,
   justifyBetween,
   wrapGap,
   column

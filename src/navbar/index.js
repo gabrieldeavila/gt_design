@@ -4,6 +4,7 @@ import { transparentize } from 'polished';
 import styled from 'styled-components/macro';
 import { color, flexbox, space } from 'styled-system';
 import animations from '../utils/animations';
+import flex from '../utils/flex';
 import shadows from '../utils/shadows';
 import transitions from '../utils/transitions';
 
@@ -42,6 +43,9 @@ const NavbarContainer = styled.div`
 const NavbarOptions = styled.div`
   display: flex;
   gap: 1rem;
+  height: 100%;
+  top: ${(props) => props.top || 0}px;
+  ${space}
 `;
 
 const NavbarLeft = styled.div`
@@ -56,8 +60,8 @@ const NavbarLeft = styled.div`
       left: 0;
       right: 0;
       display: flex;
-      background: ${(props) => props.theme.primary};
-      padding: 0.5rem;
+      background: ${(props) => props.theme.backgroundMobileNav};
+      padding: 0.15rem;
       justify-content: center;
       z-index: 1004;
     }
@@ -82,12 +86,16 @@ const NavbarText = styled.p`
 const NavbarPopupWrapper = styled.div`
   position: absolute;
   width: 100%;
-  height: 0.35rem;
+  height: 4rem;
+
+  @media (max-width: 768px) {
+    top: -250%;
+  }
 `;
 
 const NavbarPopup = styled.div`
-  margin-top: 0.35rem;
-  padding-top: 0.35rem;
+  margin-top: 4rem;
+  padding: 0.35rem 0;
   min-width: 15rem;
   background: ${(props) => props.theme.primary};
   border-radius: 0.25rem;
@@ -113,9 +121,15 @@ const NavbarOptionWrapper = styled.div`
 const NavbarOption = styled.div`
   border-radius: 0.5rem;
   ${transitions.basic}
+  ${flex.alignCenterCol}
 
   &:hover {
     background: ${(props) => props.theme.backgroundHover};
+  }
+
+  /* when mobile, scale down */
+  @media (max-width: 768px) {
+    transform: scale(0.7);
   }
 `;
 

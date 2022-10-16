@@ -22,6 +22,7 @@ GtDesign.defaultProps = {
     primary: '#FFFFFF',
     secundary: '#fefefa',
     contrast: '#000000',
-    backgroundHover: '#f5f5f5'
+    backgroundHover: '#f5f5f5',
+    backgroundMobileNav: '#f2f3f4'
   }
 };
