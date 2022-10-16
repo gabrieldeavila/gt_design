@@ -43,9 +43,24 @@ const NavbarContainer = styled.div`
 const NavbarOptions = styled.div`
   display: flex;
   gap: 1rem;
-  height: 100%;
+  height: fit-content;
   top: ${(props) => props.top || 0}px;
   ${space}
+`;
+
+const NavbarOption = styled.div`
+  border-radius: 0.5rem;
+  ${transitions.basic}
+  ${flex.alignCenterCol}
+
+  &:hover {
+    background: ${(props) => props.theme.backgroundHover};
+  }
+
+  /* when mobile, scale down */
+  @media (max-width: 768px) {
+    transform: scale(0.7);
+  }
 `;
 
 const NavbarLeft = styled.div`
@@ -61,9 +76,22 @@ const NavbarLeft = styled.div`
       right: 0;
       display: flex;
       background: ${(props) => props.theme.backgroundMobileNav};
-      padding: 0.15rem;
       justify-content: center;
       z-index: 1004;
+
+      ${NavbarOption} {
+        padding: 1.5rem;
+        cursor: pointer;
+        background: ${(props) => props.theme.primary};
+        ${flex.wrapGap}
+        gap: 0.5rem;
+        min-width: 5rem;
+        ${shadows.basic}
+        ${transitions.basic}
+        &:hover {
+          background: ${(props) => props.theme.backgroundHover};
+        }
+      }
     }
   }
 `;
@@ -81,6 +109,11 @@ const NavbarText = styled.p`
   height: fit-content;
   padding: 1rem;
   ${transitions.basic}
+
+  /* when mobile, removes padding */
+  @media (max-width: 768px) {
+    padding: 0;
+  }
 `;
 
 const NavbarPopupWrapper = styled.div`
@@ -116,21 +149,6 @@ const NavbarPopup = styled.div`
 
 const NavbarOptionWrapper = styled.div`
   position: relative;
-`;
-
-const NavbarOption = styled.div`
-  border-radius: 0.5rem;
-  ${transitions.basic}
-  ${flex.alignCenterCol}
-
-  &:hover {
-    background: ${(props) => props.theme.backgroundHover};
-  }
-
-  /* when mobile, scale down */
-  @media (max-width: 768px) {
-    transform: scale(0.7);
-  }
 `;
 
 const NavbarRight = styled.div``;

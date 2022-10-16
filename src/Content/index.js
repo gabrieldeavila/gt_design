@@ -14,6 +14,11 @@ const ContentWrapper = styled.div`
 
 const ContentContainer = styled.div`
   margin: 1rem 1.5rem;
+
+  /* when mobile, removes */
+  @media (max-width: 768px) {
+    margin: 0;
+  }
 `;
 
 export default {
