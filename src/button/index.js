@@ -34,7 +34,7 @@ const ButtonNormal = styled.button`
 
 const ButtonContrast = styled.button`
   ${resetBtn};
-  ${shadows.basic}
+  ${shadows.btnShadow}
   background: ${(props) => props.theme.primary};
   color: ${(props) => props.theme.contrast};
 

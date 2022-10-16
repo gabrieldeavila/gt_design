@@ -5,6 +5,7 @@ import PropTypes from 'prop-types';
 import Modal from '.';
 import useOnClickOutside from '../hooks/useOnClickOutside';
 import Text from '../text';
+import GTSwitchThemes from '../switch/gt';
 
 function GTModal({ show, setShow }) {
   const [open, setOpen] = useState(true);
@@ -44,6 +45,7 @@ function GTModal({ show, setShow }) {
 
           <Modal.Main>
             <Text.P>hehehe</Text.P>
+            <GTSwitchThemes />
           </Modal.Main>
         </Modal.Container>
       </Modal.Wrapper>

@@ -135,7 +135,7 @@ const NavbarPopup = styled.div`
   gap: 0.5rem;
   flex-direction: column;
   z-index: 10;
-  ${shadows.basic}
+  ${shadows.btnShadow}
   ${transitions.basic}
 
   animation: ${(props) =>

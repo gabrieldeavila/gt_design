@@ -39,7 +39,7 @@ const ModalHeader = styled.div`
   ${flex.justifyBetween}
 `;
 
-const ModalClose = styled.div`
+const ModalClose = styled.div` 
   cursor: pointer;
 
   ${transitions.linear}
