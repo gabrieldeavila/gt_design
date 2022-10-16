@@ -45,7 +45,32 @@ const easeOpacity = css`
   }
 `;
 
+const easeShow = css`
+  @keyframes show {
+    0% {
+      opacity: 0;
+      transform: translateY(-5rem);
+    }
+    100% {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @keyframes showReverse {
+    0% {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    100% {
+      opacity: 0;
+      transform: translateY(-5rem);
+    }
+  }
+`;
+
 export default {
   easeOpenClose,
-  easeOpacity
+  easeOpacity,
+  easeShow
 };

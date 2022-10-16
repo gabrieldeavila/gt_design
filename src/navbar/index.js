@@ -20,6 +20,9 @@ const NavbarWrapper = styled.nav`
   ${space}
   ${flexbox}
   backdrop-filter: blur(10px);
+  animation: ${(props) =>
+    !props.show ? 'show 0.2s ease-in-out forwards' : 'showReverse 0.2s ease-in-out forwards'};
+  ${animations.easeShow}
 
   p {
     margin: 0;
@@ -135,7 +138,7 @@ const NavbarPopup = styled.div`
   gap: 0.5rem;
   flex-direction: column;
   z-index: 10;
-  ${shadows.btnShadow}
+  ${shadows.basic}
   ${transitions.basic}
 
   animation: ${(props) =>

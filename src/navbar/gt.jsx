@@ -9,9 +9,28 @@ import Symbol from '../symbol';
 function GTNavbar({ showModal }) {
   // if is showing modal, add padding to the wrapper
   const wrapperStyle = showModal && 14;
+  const oldScroll = useRef(0);
+
+  // when scrolls down, add a class to the navbar
+  const [showNavbar, setShowNavbar] = useState(true);
+  const handleScroll = useCallback(() => {
+    if (window.scrollY > oldScroll.current) {
+      setShowNavbar(true);
+    } else {
+      console.log('tem q mostrar o navbar');
+      setShowNavbar(false);
+    }
+
+    oldScroll.current = window.scrollY;
+  }, []);
+
+  useEffect(() => {
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, [handleScroll]);
 
   return (
-    <Navbar.Wrapper mr={wrapperStyle}>
+    <Navbar.Wrapper show={showNavbar} mr={wrapperStyle}>
       <Navbar.Container>
         <Navbar.Left>
           <Navbar.Title>Gt Design</Navbar.Title>
