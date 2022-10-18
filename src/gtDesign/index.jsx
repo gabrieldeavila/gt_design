@@ -10,7 +10,9 @@ const defaultTheme = {
   backgroundMobileNav: '#f2f3f4',
   sunColor: '#ffd700',
   moonColor: '#6050dc',
-  btnShadow: '#000000'
+  btnShadow: '#000000',
+  loginBoxContrast: '#555555',
+  loginBoxPrimary: '#fffafa ',
 };
 function GtDesign({ theme, children }) {
   const themeStyle = { ...defaultTheme, ...theme };
