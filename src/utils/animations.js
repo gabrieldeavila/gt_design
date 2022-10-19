@@ -1,3 +1,5 @@
+/* eslint-disable implicit-arrow-linebreak */
+/* eslint-disable no-confusing-arrow */
 import { css } from 'styled-components';
 
 const easeOpenClose = css`
@@ -69,8 +71,36 @@ const easeShow = css`
   }
 `;
 
+const upLabel = css`
+  animation: ${(props) =>
+    props.up ? 'up 0.2s ease-in-out forwards' : 'upReverse 0.2s ease-in-out forwards'};
+
+  @keyframes up {
+    0% {
+      top: 50%;
+      font-size: 0.75rem;
+    }
+    100% {
+      top: 10%;
+      font-size: 0.65rem;
+    }
+  }
+
+  @keyframes upReverse {
+    0% {
+      top: 0%;
+      font-size: 0.5rem;
+    }
+    100% {
+      top: 40%;
+      font-size: 0.75rem;
+    }
+  }
+`;
+
 export default {
   easeOpenClose,
   easeOpacity,
-  easeShow
+  easeShow,
+  upLabel
 };

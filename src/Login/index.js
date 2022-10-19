@@ -72,7 +72,7 @@ const LoginInputContainer = styled.div`
   position: relative;
 
   svg {
-    top: 20%;
+    top: 16%;
     transform: scale(0.75);
     right: 0.5rem;
     stroke: ${(props) => props.theme.primary};
@@ -92,7 +92,8 @@ const LoginInput = styled.input`
 `;
 
 const LoginLabel = styled.label`
-  cursor: pointer;
+  user-select: none;
+  cursor: text;
   position: absolute;
   font-size: 0.75rem;
   top: 30%;

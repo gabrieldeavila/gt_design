@@ -1,6 +1,7 @@
 import React from 'react';
-import * as Icon from 'react-feather';
 import Button from '../../button';
+import Input from '../../input';
+import GTInput from '../../input/GTInput';
 import Login from '../../Login';
 import Space from '../../space';
 import Text from '../../text';
@@ -21,23 +22,13 @@ function LoginEx() {
             <Text.H1>Create a new account</Text.H1>
             <Text.P>Join the TIZ community and start sharing your ideas.</Text.P>
           </Space.Flex>
-          <Login.InputWrapper>
-            <Login.InputContainer>
-              <Login.Label htmlFor="name">Your name</Login.Label>
-              <Login.Input id="name" />
-            </Login.InputContainer>
+          <Input.Wrapper>
+            <GTInput.Text name="name" label="Your Name" />
 
-            <Login.InputContainer>
-              <Login.Label htmlFor="email">Email</Login.Label>
-              <Login.Input id="email" />
-            </Login.InputContainer>
+            <GTInput.Email name="email" label="Email" />
 
-            <Login.InputContainer>
-              <Login.Label htmlFor="password">Password</Login.Label>
-              <Login.Input id="password" />
-              <Icon.Eye />
-            </Login.InputContainer>
-          </Login.InputWrapper>
+            <GTInput.Password name="password" label="Password" />
+          </Input.Wrapper>
           <Space.Flex>
             <Text.P sm>
               By creating your Tiz account, you agree to our Terms, Data Policy and Cookies Policy.
