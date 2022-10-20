@@ -13,6 +13,7 @@ const defaultTheme = {
   btnShadow: '#000000',
   loginBoxContrast: '#555555',
   loginBoxPrimary: '#fffafa ',
+  glowShadow: '#39ff14',
 };
 function GtDesign({ theme, children }) {
   const themeStyle = { ...defaultTheme, ...theme };

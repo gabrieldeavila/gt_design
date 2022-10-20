@@ -1,5 +1,5 @@
 import { transparentize } from 'polished';
-import styled from 'styled-components';
+import styled from 'styled-components/macro';
 import flex from '../utils/flex';
 import transitions from '../utils/transitions';
 

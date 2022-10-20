@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled from 'styled-components/macro';
 import flex from '../utils/flex';
 import shadows from '../utils/shadows';
 

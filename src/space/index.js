@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled from 'styled-components/macro';
 import { space } from 'styled-system';
 
 const Flex = styled.div`
@@ -6,6 +6,7 @@ const Flex = styled.div`
   gap: 1rem;
   flex-wrap: wrap;
   flex-direction: column;
+  width: -webkit-fill-available;
   ${space}
 `;
 
@@ -14,12 +15,12 @@ const FullSpace = styled.div`
   height: fit-content;
 
   > * {
-    width: 100%;  
+    width: 100%;
     height: 100%;
   }
 `;
 
 export default {
   Flex,
-  FullSpace,
+  FullSpace
 };

@@ -15,11 +15,17 @@ function useInputValues() {
     }
   }, [value]);
 
-  const handleChange = useCallback((e) => {
-    setValue(e.target.value);
-  }, []);
+  const handleInputChange = useCallback(
+    (val) => {
+      if (!_.isEmpty(val) && _.isEmpty(value)) {
+        setLabelIsUp(true);
+      }
+      setValue(val);
+    },
+    [value]
+  );
 
-  return { labelIsUp, value, setValue, handleChange, handleInputBlur, handleInputFocus };
+  return { labelIsUp, value, setValue, handleInputChange, handleInputBlur, handleInputFocus };
 }
 
 export default useInputValues;

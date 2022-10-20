@@ -1,12 +1,12 @@
 /* eslint-disable implicit-arrow-linebreak */
 /* eslint-disable no-confusing-arrow */
-import styled from 'styled-components';
+import styled from 'styled-components/macro';
 import animations from '../utils/animations';
 import flex from '../utils/flex';
 
 const InputWrapper = styled.div`
   ${flex.wrapGap}
-  gap: 1.5rem;
+  gap: 2rem;
 `;
 
 const InputContainer = styled.div`
@@ -50,9 +50,20 @@ const InputLabel = styled.label`
   ${animations.upLabel}
 `;
 
+const InputError = styled.span`
+  user-select: none;
+  cursor: text;
+  position: absolute;
+  font-size: 0.65rem;
+  color: #ff4040;
+  top: 100%;
+  margin-top: 0.25rem;
+`;
+
 export default {
   Wrapper: InputWrapper,
   Container: InputContainer,
   Input,
-  Label: InputLabel
+  Label: InputLabel,
+  Error: InputError
 };

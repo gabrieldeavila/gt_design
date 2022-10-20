@@ -25,7 +25,7 @@ function LoginEx() {
           <Input.Wrapper>
             <GTInput.Text name="name" label="Your Name" />
 
-            <GTInput.Email name="email" label="Email" />
+            <GTInput.Email verifications={['valid']} name="email" label="Email" />
 
             <GTInput.Password name="password" label="Password" />
           </Input.Wrapper>

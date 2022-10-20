@@ -1,5 +1,5 @@
 import { transparentize } from 'polished';
-import styled from 'styled-components';
+import styled from 'styled-components/macro';
 import flex from '../utils/flex';
 import shadows from '../utils/shadows';
 
@@ -15,18 +15,26 @@ const LoginBoxContrast = styled.div`
   position: absolute;
   top: 0;
   bottom: 50%;
+  background: rgb(125, 197, 193);
+  background: linear-gradient(
+    50deg,
+    rgba(125, 197, 193, 1) 0%,
+    rgba(167, 123, 243, 1) 50%,
+    rgba(156, 194, 239, 1) 100%
+  );
+
   left: 0;
   right: 0;
 `;
 
 const LoginTitle = styled.h1`
-  color: ${(props) => props.theme.primary};
+  color: ${(props) => props.theme.contrast};
   position: absolute;
   top: 25%;
   left: 3rem;
   right: 60%;
-  font-size: 2rem;
-  line-height: 2.5rem;
+  font-size: 3rem;
+  line-height: 3rem;
 `;
 
 const LoginBoxPrimary = styled.div`
@@ -40,15 +48,25 @@ const LoginBoxPrimary = styled.div`
 
 const LoginBoxMain = styled.main`
   position: absolute;
-  top: 25%;
-  bottom: 25%;
+  top: 15%;
   left: 60%;
-  width: 25vw;
+  width: 30vw;
   background: ${(props) => transparentize(0.4, props.theme.primary)};
   backdrop-filter: blur(1rem);
   border-radius: 0.25rem;
-  ${shadows.basic}
+  ${shadows.glow}
   ${flex.alignCenter}
+  gap: 2.5rem;
+
+  /* when it hits 1000px, uses all space available */
+
+  @media (max-width: 1000px) {
+    width: 100%;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    top: 0;
+  }
 `;
 
 const LoginBoxWrapper = styled.main`
@@ -57,6 +75,7 @@ const LoginBoxWrapper = styled.main`
   padding: 3rem;
   ${flex.column}
   ${flex.alignCenter}
+  ${flex.wrapGap}
   justify-content: space-evenly;
 `;
 

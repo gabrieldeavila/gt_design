@@ -1,11 +1,11 @@
 import { PropTypes } from 'prop-types';
-import React, { useCallback, useMemo, useState } from 'react';
+import React, { memo, useCallback, useMemo, useState } from 'react';
 import * as Icon from 'react-feather';
 import Input from '..';
 import useInputValues from '../../hooks/useInputValues';
 
 function GTInputPassword({ name, label }) {
-  const { labelIsUp, handleChange, handleInputBlur, handleInputFocus } = useInputValues();
+  const { labelIsUp, handleInputChange, handleInputBlur, handleInputFocus } = useInputValues();
 
   const [showPassword, setShowPassword] = useState(false);
 
@@ -15,6 +15,17 @@ function GTInputPassword({ name, label }) {
     setShowPassword((prevState) => !prevState);
   }, []);
 
+  const handleBlur = useCallback(() => {
+    handleInputBlur();
+  }, [handleInputBlur]);
+
+  const handleChange = useCallback(
+    (e) => {
+      handleInputChange(e.target.value);
+    },
+    [handleInputChange]
+  );
+
   return (
     <Input.Container>
       <Input.Label up={labelIsUp} htmlFor={name}>
@@ -23,7 +34,7 @@ function GTInputPassword({ name, label }) {
       <Input.Input
         type={type}
         onChange={handleChange}
-        onBlur={handleInputBlur}
+        onBlur={handleBlur}
         onFocus={handleInputFocus}
         id={name}
         name={name}
@@ -38,7 +49,7 @@ function GTInputPassword({ name, label }) {
   );
 }
 
-export default GTInputPassword;
+export default memo(GTInputPassword);
 
 GTInputPassword.propTypes = {
   name: PropTypes.string.isRequired,

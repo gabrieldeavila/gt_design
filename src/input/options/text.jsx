@@ -1,10 +1,17 @@
 import { PropTypes } from 'prop-types';
-import React from 'react';
+import React, { memo, useCallback } from 'react';
 import Input from '..';
 import useInputValues from '../../hooks/useInputValues';
 
 function GTInputText({ name, label }) {
-  const { labelIsUp, handleChange, handleInputBlur, handleInputFocus } = useInputValues();
+  const { labelIsUp, handleInputChange, handleInputBlur, handleInputFocus } = useInputValues();
+
+  const handleChange = useCallback(
+    (e) => {
+      handleInputChange(e.target.value);
+    },
+    [handleInputChange]
+  );
 
   return (
     <Input.Container>
@@ -23,7 +30,7 @@ function GTInputText({ name, label }) {
   );
 }
 
-export default GTInputText;
+export default memo(GTInputText);
 
 GTInputText.propTypes = {
   name: PropTypes.string.isRequired,

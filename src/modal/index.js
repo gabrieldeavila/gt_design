@@ -1,6 +1,6 @@
 /* eslint-disable implicit-arrow-linebreak */
 /* eslint-disable no-confusing-arrow */
-import styled from 'styled-components';
+import styled from 'styled-components/macro';
 import { transparentize } from 'polished';
 import flex from '../utils/flex';
 import animations from '../utils/animations';

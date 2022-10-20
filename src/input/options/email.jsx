@@ -1,10 +1,32 @@
 import { PropTypes } from 'prop-types';
-import React from 'react';
+import React, { memo, useCallback, useMemo, useState } from 'react';
 import Input from '..';
 import useInputValues from '../../hooks/useInputValues';
+import useVerifyEmail from '../../hooks/useVerifyEmail';
 
-function GTInputEmail({ name, label }) {
-  const { labelIsUp, handleChange, handleInputBlur, handleInputFocus } = useInputValues();
+const verificationDefault = ['valid'];
+
+function GTInputEmail({ name, label, verification }) {
+  const verificatioOptions = useMemo(
+    () => [...verificationDefault, ...verification],
+    [verification]
+  );
+
+  const [isValidEmail, setIsValidEmail] = useState(true);
+
+  const { labelIsUp, handleInputChange, handleInputBlur, handleInputFocus } = useInputValues();
+  const { verifyEmail } = useVerifyEmail();
+
+  const handleChange = useCallback(
+    (e) => {
+      const { value } = e.target;
+      const isValid = verifyEmail(value, verificatioOptions);
+
+      setIsValidEmail(isValid);
+      handleInputChange(value);
+    },
+    [verificatioOptions, handleInputChange, verifyEmail]
+  );
 
   return (
     <Input.Container>
@@ -19,13 +41,19 @@ function GTInputEmail({ name, label }) {
         id={name}
         name={name}
       />
+      {!isValidEmail && <Input.Error>Email inválido!</Input.Error>}
     </Input.Container>
   );
 }
 
-export default GTInputEmail;
+export default memo(GTInputEmail);
 
 GTInputEmail.propTypes = {
   name: PropTypes.string.isRequired,
-  label: PropTypes.string.isRequired
+  label: PropTypes.string.isRequired,
+  verification: PropTypes.arrayOf(PropTypes.string)
+};
+
+GTInputEmail.defaultProps = {
+  verification: verificationDefault
 };
