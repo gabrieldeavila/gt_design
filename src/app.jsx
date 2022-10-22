@@ -14,8 +14,9 @@ const darkThemeStyle = {
   sunColor: '#daa520',
   moonColor: '#191970',
   btnShadow: '#ffff',
-  loginBoxContrast: '#fffafa',
-  loginBoxPrimary: '#414a4c  '
+  loginBackground1: 'rgba(125, 197, 193, 1)',
+  loginBackground2: 'rgba(167, 123, 243, 1)',
+  loginBackground3: 'rgba(156, 194, 239, 1)',
 };
 
 function App() {

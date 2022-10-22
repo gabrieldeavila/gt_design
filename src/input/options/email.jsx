@@ -41,7 +41,7 @@ function GTInputEmail({ name, label, verification }) {
         id={name}
         name={name}
       />
-      {!isValidEmail && <Input.Error>Email inválido!</Input.Error>}
+      {!isValidEmail && <Input.Error>Invalid email!</Input.Error>}
     </Input.Container>
   );
 }

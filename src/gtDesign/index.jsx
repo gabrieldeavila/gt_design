@@ -14,6 +14,9 @@ const defaultTheme = {
   loginBoxContrast: '#555555',
   loginBoxPrimary: '#fffafa ',
   glowShadow: '#39ff14',
+  loginBackground1: 'rgba(125, 197, 193, 1)',
+  loginBackground2: 'rgba(167, 123, 243, 1)',
+  loginBackground3: 'rgba(156, 194, 239, 1)',
 };
 function GtDesign({ theme, children }) {
   const themeStyle = { ...defaultTheme, ...theme };

@@ -11,7 +11,9 @@ function LoginEx() {
     <Login.Wrapper>
       <Login.BoxContrast>
         <Login.Title>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
+          Tag, Ilustrate and Zap!
+          <br />
+          With TIZ
         </Login.Title>
       </Login.BoxContrast>
       <Login.BoxPrimary />

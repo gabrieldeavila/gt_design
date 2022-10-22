@@ -1,3 +1,4 @@
+/* eslint-disable implicit-arrow-linebreak */
 import { transparentize } from 'polished';
 import styled from 'styled-components/macro';
 import flex from '../utils/flex';
@@ -15,14 +16,12 @@ const LoginBoxContrast = styled.div`
   position: absolute;
   top: 0;
   bottom: 50%;
-  background: rgb(125, 197, 193);
   background: linear-gradient(
     50deg,
-    rgba(125, 197, 193, 1) 0%,
-    rgba(167, 123, 243, 1) 50%,
-    rgba(156, 194, 239, 1) 100%
+    ${(props) => props.theme.loginBackground1} 0%,
+    ${(props) => props.theme.loginBackground2} 50%,
+    ${(props) => props.theme.loginBackground3} 100%
   );
-
   left: 0;
   right: 0;
 `;
@@ -30,8 +29,9 @@ const LoginBoxContrast = styled.div`
 const LoginTitle = styled.h1`
   color: ${(props) => props.theme.contrast};
   position: absolute;
-  top: 25%;
-  left: 3rem;
+  text-align: center;
+  top: 35%;
+  left: 4rem;
   right: 60%;
   font-size: 3rem;
   line-height: 3rem;
@@ -69,8 +69,7 @@ const LoginBoxMain = styled.main`
   }
 `;
 
-const LoginBoxWrapper = styled.main`
-  /* background: red; */
+const LoginBoxWrapper = styled.div`
   height: 100%;
   padding: 3rem;
   ${flex.column}
