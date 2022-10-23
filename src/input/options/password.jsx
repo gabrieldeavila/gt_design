@@ -5,7 +5,7 @@ import Input from '..';
 import useInputValues from '../../hooks/useInputValues';
 import useVerifyPassword from '../../hooks/useVerifyPassword';
 
-const defaultVerification = [
+const defaultValidationObj = [
   'eightLong',
   'oneSpecial',
   'oneLowercase',
@@ -76,5 +76,5 @@ GTInputPassword.propTypes = {
 };
 
 GTInputPassword.defaultProps = {
-  verification: defaultVerification
+  verification: defaultValidationObj
 };
