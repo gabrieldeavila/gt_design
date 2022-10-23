@@ -1,23 +1,31 @@
 import { PropTypes } from 'prop-types';
-import React, { memo, useCallback, useState } from 'react';
+import React, { memo, useCallback, useMemo, useState } from 'react';
 import Input from '..';
 import useInputValues from '../../hooks/useInputValues';
-import useVerifyText from '../../hooks/useVerifyText';
+import useValidateText from '../../hooks/useValidateText';
 
-const defaultVerification = ['required', 'noInitialSpace', 'noEndingSpaces'];
+const defaultValidationObj = ['required', 'noInitialSpace', 'noEndingSpaces'];
 
-function GTInputText({ name, label, verification, minWords, maxWords }) {
+function GTInputText({ name, label, validations, defaultValidation, minWords, maxWords }) {
   const { labelIsUp, handleInputChange, handleInputBlur, handleInputFocus } = useInputValues();
   const [isValidEmail, setIsValidEmail] = useState(true);
   const [errorMessage, setErrorMessage] = useState('');
 
-  const { verifyText } = useVerifyText();
+  const inputValidations = useMemo(() => {
+    if (defaultValidation) {
+      return [...defaultValidationObj, ...validations];
+    }
+
+    return validations;
+  }, [defaultValidation, validations]);
+
+  const { validateText } = useValidateText();
 
   const handleChange = useCallback(
     (e) => {
       const { value } = e.target;
       const words = value.split(' ');
-      let { isValid, invalidMessage } = verifyText(value, verification);
+      let { isValid, invalidMessage } = validateText(value, inputValidations);
 
       if (!invalidMessage && minWords && words.length < minWords) {
         invalidMessage = `This field should contain ${minWords} words`;
@@ -31,7 +39,7 @@ function GTInputText({ name, label, verification, minWords, maxWords }) {
       setIsValidEmail(isValid);
       handleInputChange(e.target.value);
     },
-    [handleInputChange, maxWords, minWords, verification, verifyText]
+    [validateText, inputValidations, minWords, maxWords, handleInputChange]
   );
 
   return (
@@ -57,13 +65,15 @@ export default memo(GTInputText);
 GTInputText.propTypes = {
   name: PropTypes.string.isRequired,
   label: PropTypes.string.isRequired,
-  verification: PropTypes.arrayOf(PropTypes.string),
+  validations: PropTypes.arrayOf(PropTypes.string),
   minWords: PropTypes.number,
-  maxWords: PropTypes.number
+  maxWords: PropTypes.number,
+  defaultValidation: PropTypes.bool
 };
 
 GTInputText.defaultProps = {
-  verification: defaultVerification,
+  validations: defaultValidationObj,
   minWords: 0,
-  maxWords: 0
+  maxWords: 0,
+  defaultValidation: true
 };

@@ -23,6 +23,8 @@ function LoginEx() {
           <Input.Wrapper>
             <GTInput.Text minWords="2" maxWords="5" name="name" label="Your Name" />
 
+            <GTInput.Text defaultValidation validations={['noSpaces']} name="nickname" label="Nickname" />
+
             <GTInput.Email name="email" label="Email" />
 
             <GTInput.Password name="password" label="Password" />

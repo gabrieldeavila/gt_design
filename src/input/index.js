@@ -55,7 +55,7 @@ const InputError = styled.span`
   cursor: text;
   position: absolute;
   font-size: 0.65rem;
-  color: #ba160c;
+  color: ${(props) => props.theme.errorColor};
   top: 100%;
   margin-top: 0.25rem;
 `;
