@@ -1,12 +1,14 @@
 import { transparentize } from 'polished';
 import { createGlobalStyle } from 'styled-components';
 import reset from 'styled-reset';
+import transitions from '../utils/transitions';
 
 const GlobalStyle = createGlobalStyle`
   ${reset}
 
   * {
     color: ${(props) => props.theme.contrast};
+    ${transitions.basic}
   }
 
   body {

@@ -5,17 +5,13 @@ import GTInput from '../../input/GTInput';
 import Login from '../../Login';
 import Space from '../../space';
 import Text from '../../text';
+import GTSwitchThemes from '../../switch/gt';
 
 function LoginEx() {
   return (
     <Login.Wrapper>
-      <Login.BoxContrast>
-        <Login.Title>
-          Tag, Ilustrate and Zap!
-          <br />
-          With TIZ
-        </Login.Title>
-      </Login.BoxContrast>
+      <GTSwitchThemes />
+      <Login.BoxContrast />
       <Login.BoxPrimary />
 
       <Login.BoxMain>
@@ -25,9 +21,9 @@ function LoginEx() {
             <Text.P>Join the TIZ community and start sharing your ideas.</Text.P>
           </Space.Flex>
           <Input.Wrapper>
-            <GTInput.Text name="name" label="Your Name" />
+            <GTInput.Text minWords="2" maxWords="5" name="name" label="Your Name" />
 
-            <GTInput.Email verifications={['valid']} name="email" label="Email" />
+            <GTInput.Email name="email" label="Email" />
 
             <GTInput.Password name="password" label="Password" />
           </Input.Wrapper>
@@ -36,7 +32,7 @@ function LoginEx() {
               By creating your Tiz account, you agree to our Terms, Data Policy and Cookies Policy.
             </Text.P>
             <Space.FullSpace>
-              <Button.Normal>Create your Tiz account</Button.Normal>
+              <Button.NormalShadow>Create your Tiz account</Button.NormalShadow>
             </Space.FullSpace>
           </Space.Flex>
         </Login.BoxWrapper>

@@ -1,6 +1,7 @@
 /* eslint-disable implicit-arrow-linebreak */
 import { transparentize } from 'polished';
 import styled from 'styled-components/macro';
+import Switch from '../switch';
 import flex from '../utils/flex';
 import shadows from '../utils/shadows';
 
@@ -9,10 +10,14 @@ const LoginWrapper = styled.div`
   width: 100vw;
   height: 100vh;
   ${flex.column}
+
+  ${Switch.Label} {
+    margin-top: 2rem;
+    margin-left: 2rem;
+  }
 `;
 
 const LoginBoxContrast = styled.div`
-  background: ${(props) => props.theme.loginBoxContrast};
   position: absolute;
   top: 0;
   bottom: 50%;
@@ -24,17 +29,6 @@ const LoginBoxContrast = styled.div`
   );
   left: 0;
   right: 0;
-`;
-
-const LoginTitle = styled.h1`
-  color: ${(props) => props.theme.contrast};
-  position: absolute;
-  text-align: center;
-  top: 35%;
-  left: 4rem;
-  right: 60%;
-  font-size: 3rem;
-  line-height: 3rem;
 `;
 
 const LoginBoxPrimary = styled.div`
@@ -78,56 +72,10 @@ const LoginBoxWrapper = styled.div`
   justify-content: space-evenly;
 `;
 
-const LoginInputWrapper = styled.div`
-  ${flex.wrapGap}
-  gap: 1.5rem;
-`;
-
-const LoginInputContainer = styled.div`
-  ${flex.column}
-  gap: 0.5rem;
-  width: 100%;
-  position: relative;
-
-  svg {
-    top: 16%;
-    transform: scale(0.75);
-    right: 0.5rem;
-    stroke: ${(props) => props.theme.primary};
-    position: absolute;
-  }
-`;
-
-const LoginInput = styled.input`
-  width: -webkit-fill-available;
-  height: 2rem;
-  outline: none;
-  border-radius: 0.25rem;
-  padding: 0 0.5rem;
-  border: none;
-  background: ${(props) => props.theme.contrast};
-  color: ${(props) => props.theme.primary};
-`;
-
-const LoginLabel = styled.label`
-  user-select: none;
-  cursor: text;
-  position: absolute;
-  font-size: 0.75rem;
-  top: 30%;
-  left: 0.5rem;
-  color: ${(props) => props.theme.primary};
-`;
-
 export default {
+  Wrapper: LoginWrapper,
   BoxContrast: LoginBoxContrast,
   BoxPrimary: LoginBoxPrimary,
   BoxMain: LoginBoxMain,
-  BoxWrapper: LoginBoxWrapper,
-  InputWrapper: LoginInputWrapper,
-  InputContainer: LoginInputContainer,
-  Label: LoginLabel,
-  Input: LoginInput,
-  Wrapper: LoginWrapper,
-  Title: LoginTitle
+  BoxWrapper: LoginBoxWrapper
 };

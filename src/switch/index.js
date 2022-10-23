@@ -7,6 +7,7 @@ const SwitchLabel = styled.label`
   margin-top: 1rem;
   width: 4rem;
   height: 1.25rem;
+  z-index: 1;
   padding: 0.5rem;
   border-radius: 1.75rem;
   background: ${(props) => transparentize(0.5, props.theme.contrast)};

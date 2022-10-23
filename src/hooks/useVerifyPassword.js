@@ -28,12 +28,14 @@ function useVerifyPassword() {
     let isValid = true;
     let invalidMessage = '';
 
-    verifications.forEach((verification) => {
+    verifications.every((verification) => {
       if (!options[verification].regex.test(value)) {
         invalidMessage = options[verification].message;
         isValid = false;
+
         return false;
       }
+
       return true;
     });
 

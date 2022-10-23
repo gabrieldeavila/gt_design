@@ -21,7 +21,7 @@ const InputContainer = styled.div`
     top: 30%;
     transform: scale(0.75);
     right: 0.5rem;
-    stroke: ${(props) => props.theme.primary};
+    stroke: ${(props) => props.theme.contrast};
     position: absolute;
   }
 `;
@@ -34,8 +34,8 @@ const Input = styled.input`
   padding: 0 0.5rem;
   padding-top: 0.5rem;
   border: none;
-  background: ${(props) => props.theme.contrast};
-  color: ${(props) => props.theme.primary};
+  background: ${(props) => props.theme.primary};
+  color: ${(props) => props.theme.contrast};
   font-family: 'Kanit', sans-serif;
 `;
 
@@ -45,7 +45,7 @@ const InputLabel = styled.label`
   position: absolute;
   font-size: 0.75rem;
   left: 0.5rem;
-  color: ${(props) => props.theme.primary};
+  color: ${(props) => props.theme.contrast};
 
   ${animations.upLabel}
 `;
@@ -55,7 +55,7 @@ const InputError = styled.span`
   cursor: text;
   position: absolute;
   font-size: 0.65rem;
-  color: #ff4040;
+  color: #ba160c;
   top: 100%;
   margin-top: 0.25rem;
 `;

@@ -10,10 +10,14 @@ function useVerifyEmail() {
   const verifyEmail = useCallback((value, verifications) => {
     let isValid = true;
 
-    verifications.forEach((verification) => {
+    verifications.every((verification) => {
       if (!options[verification].regex.test(value)) {
         isValid = false;
+
+        return false;
       }
+
+      return true;
     });
 
     return isValid;

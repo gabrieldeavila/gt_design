@@ -13,6 +13,7 @@ const darkThemeStyle = {
   backgroundMobileNav: '#555d50',
   sunColor: '#daa520',
   moonColor: '#191970',
+  loginBoxPrimary: '',
   btnShadow: '#ffff',
   loginBackground1: 'rgba(125, 197, 193, 1)',
   loginBackground2: 'rgba(167, 123, 243, 1)',

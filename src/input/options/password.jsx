@@ -6,11 +6,11 @@ import useInputValues from '../../hooks/useInputValues';
 import useVerifyPassword from '../../hooks/useVerifyPassword';
 
 const defaultVerification = [
+  'eightLong',
+  'oneSpecial',
+  'oneLowercase',
   'oneNumber',
   'oneUppercase',
-  'oneLowercase',
-  'oneSpecial',
-  'eightLong',
 ];
 
 function GTInputPassword({ name, label, verification }) {

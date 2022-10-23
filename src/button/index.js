@@ -28,15 +28,19 @@ const ButtonWrapper = styled.div`
 
 const ButtonNormal = styled.button`
   ${resetBtn};
-  background: ${(props) => props.theme.contrast};
-  color: ${(props) => props.theme.primary};
+  background: ${(props) => props.theme.primary};
+  color: ${(props) => props.theme.contrast};
+`;
+
+const ButtonNormalShadow = styled(ButtonNormal)`
+  ${shadows.basic}
 `;
 
 const ButtonContrast = styled.button`
-  ${resetBtn};
+  ${resetBtn};  
   ${shadows.basic}
-  background: ${(props) => props.theme.primary};
-  color: ${(props) => props.theme.contrast};
+  background: ${(props) => props.theme.contrast};
+  color: ${(props) => props.theme.primary};
 
   ${space};
 `;
@@ -44,5 +48,6 @@ const ButtonContrast = styled.button`
 export default {
   Wrapper: ButtonWrapper,
   Normal: ButtonNormal,
+  NormalShadow: ButtonNormalShadow,
   Contrast: ButtonContrast
 };
