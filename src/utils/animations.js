@@ -81,7 +81,7 @@ const upLabel = css`
       font-size: 0.75rem;
     }
     100% {
-      top: 10%;
+      top: 20%;
       font-size: 0.65rem;
     }
   }

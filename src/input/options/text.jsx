@@ -28,7 +28,7 @@ function GTInputText({ name, label, validations, defaultValidation, minWords, ma
       let { isValid, invalidMessage } = validateText(value, inputValidations);
 
       if (!invalidMessage && minWords && words.length < minWords) {
-        invalidMessage = `This field should contain ${minWords} words`;
+        invalidMessage = `This field should contain at least ${minWords} words`;
         isValid = false;
       } else if (!invalidMessage && maxWords && words.length > maxWords) {
         invalidMessage = `This field should not contain more than ${maxWords} words`;

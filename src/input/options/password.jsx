@@ -3,26 +3,34 @@ import React, { memo, useCallback, useMemo, useState } from 'react';
 import * as Icon from 'react-feather';
 import Input from '..';
 import useInputValues from '../../hooks/useInputValues';
-import useVerifyPassword from '../../hooks/useVerifyPassword';
+import useValidatePassword from '../../hooks/useValidatePassword';
 
 const defaultValidationObj = [
   'eightLong',
   'oneSpecial',
   'oneLowercase',
   'oneNumber',
-  'oneUppercase',
+  'oneUppercase'
 ];
 
-function GTInputPassword({ name, label, verification }) {
+function GTInputPassword({ name, label, defaultValidation, validations }) {
   const { labelIsUp, handleInputChange, handleInputBlur, handleInputFocus } = useInputValues();
 
-  const { verifyPassword } = useVerifyPassword();
+  const { validatePassword } = useValidatePassword();
   const [isValidPassword, setIsValidPassword] = useState(true);
   const [errorMessage, setErrorMessage] = useState('');
 
   const [showPassword, setShowPassword] = useState(false);
 
   const type = useMemo(() => (showPassword ? 'text' : 'password'), [showPassword]);
+
+  const inputValidations = useMemo(() => {
+    if (defaultValidation) {
+      return [...defaultValidationObj, ...validations];
+    }
+
+    return validations;
+  }, [defaultValidation, validations]);
 
   const handleShowPassword = useCallback(() => {
     setShowPassword((prevState) => !prevState);
@@ -35,12 +43,12 @@ function GTInputPassword({ name, label, verification }) {
   const handleChange = useCallback(
     (e) => {
       const { value } = e.target;
-      const { isValid, invalidMessage } = verifyPassword(value, verification);
+      const { isValid, invalidMessage } = validatePassword(value, inputValidations);
       setIsValidPassword(isValid);
       setErrorMessage(invalidMessage);
       handleInputChange(value);
     },
-    [handleInputChange, verification, verifyPassword]
+    [handleInputChange, inputValidations, validatePassword]
   );
 
   return (
@@ -58,9 +66,9 @@ function GTInputPassword({ name, label, verification }) {
       />
 
       {showPassword ? (
-        <Icon.EyeOff onClick={handleShowPassword} />
-      ) : (
         <Icon.Eye onClick={handleShowPassword} />
+      ) : (
+        <Icon.EyeOff onClick={handleShowPassword} />
       )}
       {!isValidPassword && <Input.Error>{errorMessage}</Input.Error>}
     </Input.Container>
@@ -72,9 +80,11 @@ export default memo(GTInputPassword);
 GTInputPassword.propTypes = {
   name: PropTypes.string.isRequired,
   label: PropTypes.string.isRequired,
-  verification: PropTypes.arrayOf(PropTypes.string)
+  validations: PropTypes.arrayOf(PropTypes.string),
+  defaultValidation: PropTypes.bool
 };
 
 GTInputPassword.defaultProps = {
-  verification: defaultValidationObj
+  validations: defaultValidationObj,
+  defaultValidation: true
 };

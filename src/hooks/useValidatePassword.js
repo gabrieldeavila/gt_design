@@ -23,17 +23,21 @@ const options = {
   }
 };
 
-function useVerifyPassword() {
-  const verifyPassword = useCallback((value, verifications) => {
+function useValidatePassword() {
+  const validatePassword = useCallback((value, validations) => {
     let isValid = true;
     let invalidMessage = '';
 
-    verifications.every((verification) => {
-      if (!options[verification].regex.test(value)) {
-        invalidMessage = options[verification].message;
-        isValid = false;
+    validations.every((validation) => {
+      try {
+        if (!options[validation].regex.test(value)) {
+          invalidMessage = options[validation].message;
+          isValid = false;
 
-        return false;
+          return false;
+        }
+      } catch {
+        throw new Error(`Oops, ${validation} is not a valid validation for a password input!`);
       }
 
       return true;
@@ -42,7 +46,7 @@ function useVerifyPassword() {
     return { isValid, invalidMessage };
   }, []);
 
-  return { verifyPassword };
+  return { validatePassword };
 }
 
-export default useVerifyPassword;
+export default useValidatePassword;

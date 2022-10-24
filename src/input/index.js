@@ -32,7 +32,7 @@ const Input = styled.input`
   outline: none;
   border-radius: 0.25rem;
   padding: 0 0.5rem;
-  padding-top: 0.5rem;
+  padding-top: 1rem;
   border: none;
   background: ${(props) => props.theme.primary};
   color: ${(props) => props.theme.contrast};

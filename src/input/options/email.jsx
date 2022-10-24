@@ -2,30 +2,33 @@ import { PropTypes } from 'prop-types';
 import React, { memo, useCallback, useMemo, useState } from 'react';
 import Input from '..';
 import useInputValues from '../../hooks/useInputValues';
-import useVerifyEmail from '../../hooks/useVerifyEmail';
+import useValidateEmail from '../../hooks/useValidateEmail';
 
-const verificationDefault = ['valid'];
+const defaultValidationObj = ['required'];
 
-function GTInputEmail({ name, label, verification }) {
-  const verificatioOptions = useMemo(
-    () => [...verificationDefault, ...verification],
-    [verification]
-  );
+function GTInputEmail({ name, label, validations, defaultValidation }) {
+  const inputValidations = useMemo(() => {
+    if (defaultValidation) {
+      return [...defaultValidationObj, ...validations];
+    }
+
+    return validations;
+  }, [defaultValidation, validations]);
 
   const [isValidEmail, setIsValidEmail] = useState(true);
 
   const { labelIsUp, handleInputChange, handleInputBlur, handleInputFocus } = useInputValues();
-  const { verifyEmail } = useVerifyEmail();
+  const { validateEmail } = useValidateEmail();
 
   const handleChange = useCallback(
     (e) => {
       const { value } = e.target;
-      const isValid = verifyEmail(value, verificatioOptions);
+      const isValid = validateEmail(value, inputValidations);
 
       setIsValidEmail(isValid);
       handleInputChange(value);
     },
-    [verificatioOptions, handleInputChange, verifyEmail]
+    [inputValidations, handleInputChange, validateEmail]
   );
 
   return (
@@ -41,7 +44,7 @@ function GTInputEmail({ name, label, verification }) {
         id={name}
         name={name}
       />
-      {!isValidEmail && <Input.Error>Invalid email!</Input.Error>}
+      {!isValidEmail && <Input.Error>Invalid email</Input.Error>}
     </Input.Container>
   );
 }
@@ -51,9 +54,11 @@ export default memo(GTInputEmail);
 GTInputEmail.propTypes = {
   name: PropTypes.string.isRequired,
   label: PropTypes.string.isRequired,
-  verification: PropTypes.arrayOf(PropTypes.string)
+  validations: PropTypes.arrayOf(PropTypes.string),
+  defaultValidation: PropTypes.bool
 };
 
 GTInputEmail.defaultProps = {
-  verification: verificationDefault
+  validations: defaultValidationObj,
+  defaultValidation: true
 };
