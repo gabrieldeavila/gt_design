@@ -16,8 +16,12 @@ const options = {
     message: 'This field cannot end with a space.'
   },
   noSpaces: {
-    regex: /^(?:\s*[.\-_]*[a-zA-Z0-9]{1,}[.\-_]*\s*)$/,
-    message: 'This field cannot contain a space'
+    regex: /^[^\s]+$/,
+    message: 'This field cannot have spaces.'
+  },
+  userName: {
+    regex: /^[a-zA-Z0-9]+$/,
+    message: 'This field can only have letters and numbers.'
   }
 };
 
