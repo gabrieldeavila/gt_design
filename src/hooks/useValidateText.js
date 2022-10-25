@@ -100,7 +100,7 @@ function useValidateText(minWords, maxWords, minChars, maxChars) {
         isValid,
         value
       );
-      console.log(invalidAllMessageWords);
+
       const { isAllValidChars, invalidAllMessageChars } = validateMinAndMaxChars(
         invalidAllMessageWords,
         isAllValidWords,

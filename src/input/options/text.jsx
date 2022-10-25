@@ -36,7 +36,7 @@ function GTInputText({
     maxChars
   );
 
-  const { validateState } = useValidateState(name);
+  const { validateState } = useValidateState(name, inputValidations);
 
   const handleChange = useCallback(
     (e) => {
@@ -44,12 +44,12 @@ function GTInputText({
       const { isValid, invalidMessage } = validateText(value, inputValidations);
       const { isAllValid, invalidAllMessage } = validateMinAndMax(invalidMessage, isValid, value);
 
-      validateState(isValid, name, value);
+      validateState(isAllValid, value);
       setErrorMessage(invalidAllMessage);
       setIsValidText(isAllValid);
       handleInputChange(e.target.value);
     },
-    [validateText, inputValidations, validateMinAndMax, validateState, name, handleInputChange]
+    [validateText, inputValidations, validateMinAndMax, validateState, handleInputChange]
   );
 
   return (

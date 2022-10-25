@@ -1,4 +1,5 @@
 import { useCallback } from 'react';
+import useInputValidation from './useInputValidation';
 
 const options = {
   required: {
@@ -7,25 +8,16 @@ const options = {
 };
 
 function useValidateEmail() {
-  const validateEmail = useCallback((value, validations) => {
-    let isValid = true;
+  const { optionsValidation } = useInputValidation();
 
-    validations.every((validation) => {
-      try {
-        if (!options[validation].regex.test(value)) {
-          isValid = false;
+  const validateEmail = useCallback(
+    (value, validations) => {
+      const { isValid, invalidMessage } = optionsValidation(validations, options, value, 'email');
 
-          return false;
-        }
-      } catch {
-        throw new Error(`Oops, ${validation} is not a valid validation for an email input!`);
-      }
-
-      return true;
-    });
-
-    return isValid;
-  }, []);
+      return { isValid, invalidMessage };
+    },
+    [optionsValidation]
+  );
 
   return { validateEmail };
 }

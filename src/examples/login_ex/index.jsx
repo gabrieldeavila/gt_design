@@ -1,16 +1,28 @@
-import React from 'react';
+import React, { useMemo, useState } from 'react';
 import Button from '../../button';
+import GTPageStateProvider from '../../context/pageState';
 import Input from '../../input';
 import GTInput from '../../input/GTInput';
 import Login from '../../Login';
 import Space from '../../space';
-import Text from '../../text';
 import GTSwitchThemes from '../../switch/gt';
-import GTPageStateProvider from '../../context/pageState';
+import Text from '../../text';
 
 function LoginEx() {
+  const [pageState, setPageState] = useState({});
+  const [errors, setErrors] = useState([]);
+
+  const canSave = useMemo(() => errors.length === 0, [errors]);
+
   return (
-    <GTPageStateProvider>
+    <GTPageStateProvider
+      {...{
+        pageState,
+        setPageState,
+        errors,
+        setErrors
+        // eslint-disable-next-line react/jsx-closing-bracket-location
+      }}>
       <Login.Wrapper>
         <GTSwitchThemes />
         <Login.BoxContrast />
@@ -23,7 +35,14 @@ function LoginEx() {
               <Text.P>Join the TIZ community and start sharing your ideas.</Text.P>
             </Space.Flex>
             <Input.Wrapper>
-              <GTInput.Text minChars="50" maxChars="150" minWords="2" maxWords="5" name="name" label="Your Name" />
+              <GTInput.Text
+                minChars="50"
+                maxChars="150"
+                minWords="2"
+                maxWords="5"
+                name="name"
+                label="Your Name"
+              />
 
               <GTInput.Text
                 defaultValidation
@@ -42,7 +61,9 @@ function LoginEx() {
                 Policy.
               </Text.P>
               <Space.FullSpace>
-                <Button.NormalShadow>Create your Tiz account</Button.NormalShadow>
+                <Button.NormalShadow disabled={!canSave}>
+                  Create your Tiz account
+                </Button.NormalShadow>
               </Space.FullSpace>
             </Space.Flex>
           </Login.BoxWrapper>

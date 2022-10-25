@@ -3,12 +3,8 @@ import PropTypes from 'prop-types';
 
 export const GTPageStateContext = createContext();
 
-function GTPageStateProvider({ children }) {
-  const [pageState, setPageState] = useState({});
-
+function GTPageStateProvider({ errors, setErrors, pageState, setPageState, children }) {
   const [canSave, setCanSave] = useState(false);
-
-  const [errors, setErrors] = useState([]);
 
   const values = useMemo(
     () => ({
@@ -19,7 +15,7 @@ function GTPageStateProvider({ children }) {
       errors,
       setErrors
     }),
-    [canSave, errors, pageState]
+    [canSave, errors, pageState, setErrors, setPageState]
   );
 
   return <GTPageStateContext.Provider value={values}>{children}</GTPageStateContext.Provider>;
@@ -28,5 +24,9 @@ function GTPageStateProvider({ children }) {
 export default GTPageStateProvider;
 
 GTPageStateProvider.propTypes = {
-  children: PropTypes.node.isRequired
+  children: PropTypes.node.isRequired,
+  errors: PropTypes.arrayOf(PropTypes.string).isRequired,
+  setErrors: PropTypes.func.isRequired,
+  pageState: PropTypes.objectOf(PropTypes.string).isRequired,
+  setPageState: PropTypes.func.isRequired
 };

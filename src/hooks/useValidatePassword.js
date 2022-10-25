@@ -1,4 +1,5 @@
 import { useCallback } from 'react';
+import useInputValidation from './useInputValidation';
 
 const options = {
   eightLong: {
@@ -24,27 +25,16 @@ const options = {
 };
 
 function useValidatePassword() {
-  const validatePassword = useCallback((value, validations) => {
-    let isValid = true;
-    let invalidMessage = '';
+  const { optionsValidation } = useInputValidation();
 
-    validations.every((validation) => {
-      try {
-        if (!options[validation].regex.test(value)) {
-          invalidMessage = options[validation].message;
-          isValid = false;
+  const validatePassword = useCallback(
+    (value, validations) => {
+      const { isValid, invalidMessage } = optionsValidation(validations, options, value, 'password');
 
-          return false;
-        }
-      } catch {
-        throw new Error(`Oops, ${validation} is not a valid validation for a password input!`);
-      }
-
-      return true;
-    });
-
-    return { isValid, invalidMessage };
-  }, []);
+      return { isValid, invalidMessage };
+    },
+    [optionsValidation]
+  );
 
   return { validatePassword };
 }

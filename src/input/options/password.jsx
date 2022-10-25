@@ -4,6 +4,7 @@ import * as Icon from 'react-feather';
 import Input from '..';
 import useInputValues from '../../hooks/useInputValues';
 import useValidatePassword from '../../hooks/useValidatePassword';
+import useValidateState from '../../hooks/useValidateState';
 
 const defaultValidationObj = [
   'eightLong',
@@ -32,6 +33,8 @@ function GTInputPassword({ name, label, defaultValidation, validations }) {
     return validations;
   }, [defaultValidation, validations]);
 
+  const { validateState } = useValidateState(name, inputValidations);
+
   const handleShowPassword = useCallback(() => {
     setShowPassword((prevState) => !prevState);
   }, []);
@@ -44,11 +47,13 @@ function GTInputPassword({ name, label, defaultValidation, validations }) {
     (e) => {
       const { value } = e.target;
       const { isValid, invalidMessage } = validatePassword(value, inputValidations);
+
+      validateState(isValid, value);
       setIsValidPassword(isValid);
       setErrorMessage(invalidMessage);
       handleInputChange(value);
     },
-    [handleInputChange, inputValidations, validatePassword]
+    [handleInputChange, inputValidations, validatePassword, validateState]
   );
 
   return (

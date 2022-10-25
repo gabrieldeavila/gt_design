@@ -1,17 +1,34 @@
-import { useCallback, useContext } from 'react';
+import { useCallback, useContext, useEffect } from 'react';
 import { GTPageStateContext } from '../context/pageState';
 
-function useValidateState() {
+function useValidateState(name, inputValidations) {
   const { setPageState, setErrors } = useContext(GTPageStateContext);
 
-  const validateState = useCallback(
-    (isValid, name, value) => {
-      if (isValid) {
-        setPageState((prevState) => ({
-          ...prevState,
-          [name]: value
-        }));
+  useEffect(() => {
+    setPageState((prevState) => {
+      // add a key to the obj
+      const newState = { ...prevState, [name]: '' };
+      return newState;
+    });
 
+    // if it has a required validation, add a key to the errors obj
+    if (inputValidations.includes('required')) {
+      setErrors((prevState) => {
+        const newState = [...prevState, name];
+        return newState;
+      });
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
+  const validateState = useCallback(
+    (isValid, value) => {
+      setPageState((prevState) => ({
+        ...prevState,
+        [name]: value
+      }));
+
+      if (isValid) {
         setErrors((prevState) => {
           const newErrors = prevState.filter((error) => error !== name);
           return newErrors;
@@ -23,7 +40,7 @@ function useValidateState() {
         });
       }
     },
-    [setErrors, setPageState]
+    [name, setErrors, setPageState]
   );
 
   return { validateState };

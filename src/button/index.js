@@ -1,3 +1,5 @@
+/* eslint-disable implicit-arrow-linebreak */
+/* eslint-disable operator-linebreak */
 import styled, { css } from 'styled-components';
 import { flexbox, space } from 'styled-system';
 import flex from '../utils/flex';
@@ -17,8 +19,18 @@ const resetBtn = css`
   padding: 1rem;
   border-radius: 0.25rem;
 
+  /* if it's disabled */
+  ${({ disabled }) =>
+    disabled &&
+    css`
+      cursor: not-allowed;
+      opacity: 0.5;
+    `}
+
   ${transitions.linear}
-  ${hovers.scaleTransYOpacity}
+
+  /* only has hover if it's not disabled */
+  ${({ disabled }) => !disabled && hovers.scaleTransYOpacity}
 `;
 
 const ButtonWrapper = styled.div`
@@ -37,7 +49,7 @@ const ButtonNormalShadow = styled(ButtonNormal)`
 `;
 
 const ButtonContrast = styled.button`
-  ${resetBtn};  
+  ${resetBtn};
   ${shadows.basic}
   background: ${(props) => props.theme.contrast};
   color: ${(props) => props.theme.primary};
