@@ -3,12 +3,22 @@ import React, { memo, useCallback, useMemo, useState } from 'react';
 import Input from '..';
 import useInputValues from '../../hooks/useInputValues';
 import useValidateText from '../../hooks/useValidateText';
+import useValidateState from '../../hooks/useValidateState';
 
 const defaultValidationObj = ['required', 'noInitialSpace', 'noEndingSpaces'];
 
-function GTInputText({ name, label, validations, defaultValidation, minWords, maxWords }) {
+function GTInputText({
+  name,
+  label,
+  validations,
+  defaultValidation,
+  minWords,
+  maxWords,
+  minChars,
+  maxChars
+}) {
   const { labelIsUp, handleInputChange, handleInputBlur, handleInputFocus } = useInputValues();
-  const [isValidEmail, setIsValidEmail] = useState(true);
+  const [isValidText, setIsValidText] = useState(true);
   const [errorMessage, setErrorMessage] = useState('');
 
   const inputValidations = useMemo(() => {
@@ -19,27 +29,27 @@ function GTInputText({ name, label, validations, defaultValidation, minWords, ma
     return validations;
   }, [defaultValidation, validations]);
 
-  const { validateText } = useValidateText();
+  const { validateText, validateMinAndMax } = useValidateText(
+    minWords,
+    maxWords,
+    minChars,
+    maxChars
+  );
+
+  const { validateState } = useValidateState(name);
 
   const handleChange = useCallback(
     (e) => {
       const { value } = e.target;
-      const words = value.split(' ');
-      let { isValid, invalidMessage } = validateText(value, inputValidations);
+      const { isValid, invalidMessage } = validateText(value, inputValidations);
+      const { isAllValid, invalidAllMessage } = validateMinAndMax(invalidMessage, isValid, value);
 
-      if (!invalidMessage && minWords && words.length < minWords) {
-        invalidMessage = `This field should contain at least ${minWords} words`;
-        isValid = false;
-      } else if (!invalidMessage && maxWords && words.length > maxWords) {
-        invalidMessage = `This field should not contain more than ${maxWords} words`;
-        isValid = false;
-      }
-
-      setErrorMessage(invalidMessage);
-      setIsValidEmail(isValid);
+      validateState(isValid, name, value);
+      setErrorMessage(invalidAllMessage);
+      setIsValidText(isAllValid);
       handleInputChange(e.target.value);
     },
-    [validateText, inputValidations, minWords, maxWords, handleInputChange]
+    [validateText, inputValidations, validateMinAndMax, validateState, name, handleInputChange]
   );
 
   return (
@@ -55,7 +65,7 @@ function GTInputText({ name, label, validations, defaultValidation, minWords, ma
         id={name}
         name={name}
       />
-      {!isValidEmail && <Input.Error>{errorMessage}</Input.Error>}
+      {!isValidText && <Input.Error>{errorMessage}</Input.Error>}
     </Input.Container>
   );
 }
@@ -66,14 +76,18 @@ GTInputText.propTypes = {
   name: PropTypes.string.isRequired,
   label: PropTypes.string.isRequired,
   validations: PropTypes.arrayOf(PropTypes.string),
-  minWords: PropTypes.number,
-  maxWords: PropTypes.number,
-  defaultValidation: PropTypes.bool
+  minWords: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+  maxWords: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+  defaultValidation: PropTypes.bool,
+  minChars: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+  maxChars: PropTypes.oneOfType([PropTypes.string, PropTypes.number])
 };
 
 GTInputText.defaultProps = {
   validations: defaultValidationObj,
   minWords: 0,
   maxWords: 0,
-  defaultValidation: true
+  defaultValidation: true,
+  minChars: 0,
+  maxChars: 0
 };
