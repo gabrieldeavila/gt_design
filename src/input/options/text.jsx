@@ -1,9 +1,10 @@
+/* eslint-disable operator-linebreak */
 import { PropTypes } from 'prop-types';
-import React, { memo, useCallback, useMemo, useState } from 'react';
+import React, { memo, useCallback, useEffect, useMemo, useState } from 'react';
 import Input from '..';
 import useInputValues from '../../hooks/useInputValues';
-import useValidateText from '../../hooks/useValidateText';
 import useValidateState from '../../hooks/useValidateState';
+import useValidateText from '../../hooks/useValidateText';
 
 const defaultValidationObj = ['required', 'noInitialSpace', 'noEndingSpaces'];
 
@@ -17,7 +18,9 @@ function GTInputText({
   minChars,
   maxChars
 }) {
-  const { labelIsUp, handleInputChange, handleInputBlur, handleInputFocus } = useInputValues();
+  const { labelIsUp, value, handleInputChange, handleInputBlur, handleInputFocus } =
+    useInputValues(name);
+
   const [isValidText, setIsValidText] = useState(true);
   const [errorMessage, setErrorMessage] = useState('');
 
@@ -38,16 +41,26 @@ function GTInputText({
 
   const { validateState } = useValidateState(name, inputValidations);
 
+  useEffect(() => {
+    if (!value) return;
+
+    const { isValid, invalidMessage } = validateText(value, inputValidations);
+
+    setIsValidText(isValid);
+    setErrorMessage(invalidMessage);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
   const handleChange = useCallback(
     (e) => {
-      const { value } = e.target;
-      const { isValid, invalidMessage } = validateText(value, inputValidations);
-      const { isAllValid, invalidAllMessage } = validateMinAndMax(invalidMessage, isValid, value);
+      const { value: iVal } = e.target;
+      const { isValid, invalidMessage } = validateText(iVal, inputValidations);
+      const { isAllValid, invalidAllMessage } = validateMinAndMax(invalidMessage, isValid, iVal);
 
-      validateState(isAllValid, value);
+      validateState(isAllValid, iVal);
       setErrorMessage(invalidAllMessage);
       setIsValidText(isAllValid);
-      handleInputChange(e.target.value);
+      handleInputChange(iVal);
     },
     [validateText, inputValidations, validateMinAndMax, validateState, handleInputChange]
   );
@@ -59,6 +72,7 @@ function GTInputText({
       </Input.Label>
       <Input.Input
         type="text"
+        value={value}
         onChange={handleChange}
         onBlur={handleInputBlur}
         onFocus={handleInputFocus}

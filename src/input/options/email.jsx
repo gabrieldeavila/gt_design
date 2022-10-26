@@ -1,5 +1,6 @@
+/* eslint-disable operator-linebreak */
 import { PropTypes } from 'prop-types';
-import React, { memo, useCallback, useMemo, useState } from 'react';
+import React, { memo, useCallback, useEffect, useMemo, useState } from 'react';
 import Input from '..';
 import useInputValues from '../../hooks/useInputValues';
 import useValidateEmail from '../../hooks/useValidateEmail';
@@ -20,17 +21,26 @@ function GTInputEmail({ name, label, validations, defaultValidation }) {
 
   const { validateState } = useValidateState(name, inputValidations);
 
-  const { labelIsUp, handleInputChange, handleInputBlur, handleInputFocus } = useInputValues();
-  const { validateEmail } = useValidateEmail();
+  const { labelIsUp, value, handleInputChange, handleInputBlur, handleInputFocus } =
+    useInputValues(name);
 
+  const { validateEmail } = useValidateEmail();
+  useEffect(() => {
+    if (!value) return;
+
+    const { isValid } = validateEmail(value, inputValidations);
+
+    setIsValidEmail(isValid);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
   const handleChange = useCallback(
     (e) => {
-      const { value } = e.target;
-      const { isValid } = validateEmail(value, inputValidations);
+      const { value: emailVal } = e.target;
+      const { isValid } = validateEmail(emailVal, inputValidations);
 
-      validateState(isValid, value);
+      validateState(isValid, emailVal);
       setIsValidEmail(isValid);
-      handleInputChange(value);
+      handleInputChange(emailVal);
     },
     [validateEmail, inputValidations, validateState, handleInputChange]
   );
@@ -43,6 +53,7 @@ function GTInputEmail({ name, label, validations, defaultValidation }) {
       <Input.Input
         type="email"
         onChange={handleChange}
+        value={value}
         onBlur={handleInputBlur}
         onFocus={handleInputFocus}
         id={name}

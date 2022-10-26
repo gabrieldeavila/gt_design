@@ -1,5 +1,6 @@
 import styled from 'styled-components/macro';
 import { space } from 'styled-system';
+import flex from '../utils/flex';
 
 const Flex = styled.div`
   display: flex;
@@ -20,7 +21,12 @@ const FullSpace = styled.div`
   }
 `;
 
+const Center = styled.div`
+  ${flex.alignCenter}
+`;
+
 export default {
   Flex,
-  FullSpace
+  FullSpace,
+  Center
 };

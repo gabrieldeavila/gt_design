@@ -1,5 +1,6 @@
+/* eslint-disable operator-linebreak */
 import { PropTypes } from 'prop-types';
-import React, { memo, useCallback, useMemo, useState } from 'react';
+import React, { memo, useCallback, useEffect, useMemo, useState } from 'react';
 import * as Icon from 'react-feather';
 import Input from '..';
 import useInputValues from '../../hooks/useInputValues';
@@ -15,7 +16,8 @@ const defaultValidationObj = [
 ];
 
 function GTInputPassword({ name, label, defaultValidation, validations }) {
-  const { labelIsUp, handleInputChange, handleInputBlur, handleInputFocus } = useInputValues();
+  const { labelIsUp, value, handleInputChange, handleInputBlur, handleInputFocus } =
+    useInputValues(name);
 
   const { validatePassword } = useValidatePassword();
   const [isValidPassword, setIsValidPassword] = useState(true);
@@ -33,6 +35,16 @@ function GTInputPassword({ name, label, defaultValidation, validations }) {
     return validations;
   }, [defaultValidation, validations]);
 
+  useEffect(() => {
+    if (!value) return;
+
+    const { isValid, invalidMessage } = validatePassword(value, inputValidations);
+
+    setIsValidPassword(isValid);
+    setErrorMessage(invalidMessage);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
   const { validateState } = useValidateState(name, inputValidations);
 
   const handleShowPassword = useCallback(() => {
@@ -45,13 +57,13 @@ function GTInputPassword({ name, label, defaultValidation, validations }) {
 
   const handleChange = useCallback(
     (e) => {
-      const { value } = e.target;
-      const { isValid, invalidMessage } = validatePassword(value, inputValidations);
+      const { value: pswVal } = e.target;
+      const { isValid, invalidMessage } = validatePassword(pswVal, inputValidations);
 
-      validateState(isValid, value);
+      validateState(isValid, pswVal);
       setIsValidPassword(isValid);
       setErrorMessage(invalidMessage);
-      handleInputChange(value);
+      handleInputChange(pswVal);
     },
     [handleInputChange, inputValidations, validatePassword, validateState]
   );
@@ -65,6 +77,7 @@ function GTInputPassword({ name, label, defaultValidation, validations }) {
         type={type}
         onChange={handleChange}
         onBlur={handleBlur}
+        value={value}
         onFocus={handleInputFocus}
         id={name}
         name={name}

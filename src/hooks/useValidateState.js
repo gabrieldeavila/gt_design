@@ -6,8 +6,11 @@ function useValidateState(name, inputValidations) {
 
   useEffect(() => {
     setPageState((prevState) => {
+      // if already has a value, keep it
+      const prevVal = prevState[name] || '';
+
       // add a key to the obj
-      const newState = { ...prevState, [name]: '' };
+      const newState = { ...prevState, [name]: prevVal };
       return newState;
     });
 

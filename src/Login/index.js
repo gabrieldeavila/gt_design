@@ -65,6 +65,7 @@ const LoginBoxMain = styled.main`
 
 const LoginBoxWrapper = styled.div`
   height: 100%;
+  width: 100%;
   padding: 3rem;
   ${flex.column}
   ${flex.alignCenter}

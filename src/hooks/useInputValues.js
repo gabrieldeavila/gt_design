@@ -1,9 +1,12 @@
 import _ from 'lodash';
-import { useCallback, useState } from 'react';
+import { useCallback, useState, useContext } from 'react';
+import { GTPageStateContext } from '../context/pageState';
 
-function useInputValues() {
-  const [value, setValue] = useState('');
-  const [labelIsUp, setLabelIsUp] = useState(false);
+function useInputValues(name) {
+  const { pageState } = useContext(GTPageStateContext);
+
+  const [value, setValue] = useState(pageState[name] || '');
+  const [labelIsUp, setLabelIsUp] = useState(!!pageState[name]);
 
   const handleInputFocus = useCallback(() => {
     setLabelIsUp(true);
