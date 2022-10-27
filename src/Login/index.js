@@ -1,3 +1,4 @@
+/* eslint-disable operator-linebreak */
 /* eslint-disable implicit-arrow-linebreak */
 import { transparentize } from 'polished';
 import styled from 'styled-components/macro';
@@ -52,14 +53,28 @@ const LoginBoxMain = styled.main`
   ${flex.alignCenter}
   gap: 2.5rem;
 
-  /* when it hits 1000px, uses all space available */
-
   @media (max-width: 1000px) {
     width: 100%;
     bottom: 0;
     left: 0;
     right: 0;
     top: 0;
+  }
+
+  /* it can be the front or back mirror
+  depending on the props */
+  transform: rotateY(180deg);
+  
+  /* add animation based on the mirror */
+  animation: mirrorFace 1s forwards;
+
+  @keyframes mirrorFace {
+    0% {
+      transform: rotateY(180deg);
+    }
+    100% {
+      transform: rotateY(0deg);
+    }
   }
 `;
 
