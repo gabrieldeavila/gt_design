@@ -1,4 +1,4 @@
-import React, { createContext, useMemo } from 'react';
+import React, { createContext, memo, useMemo } from 'react';
 import PropTypes from 'prop-types';
 
 export const GtContext = createContext();
@@ -15,7 +15,7 @@ function GtProvider({ darkTheme, setDarkTheme, children }) {
   return <GtContext.Provider value={values}>{children}</GtContext.Provider>;
 }
 
-export default GtProvider;
+export default memo(GtProvider);
 
 GtProvider.propTypes = {
   children: PropTypes.node.isRequired,

@@ -1,8 +1,8 @@
 /* eslint-disable react/no-unescaped-entities */
-import React, { useMemo, useState } from 'react';
 import { PropTypes } from 'prop-types';
+import React, { useCallback, useContext, useEffect, useMemo, useState } from 'react';
 import Button from '../../button';
-import GTPageStateProvider from '../../context/pageState';
+import GTPageStateProvider, { GTPageStateContext } from '../../context/pageState';
 import Input from '../../input';
 import GTInput from '../../input/GTInput';
 import Login from '../../Login';
@@ -13,9 +13,9 @@ import Text from '../../text';
 function LoginEx() {
   const [pageState, setPageState] = useState({});
   const [errors, setErrors] = useState([]);
+  const [isCreate, setIsCreate] = useState(true);
 
   const canSave = useMemo(() => errors.length === 0, [errors]);
-  const [isCreate, setIsCreate] = useState(true);
 
   return (
     <GTPageStateProvider
@@ -51,27 +51,29 @@ function LoginCreate({ setIsCreate, canSave }) {
           <Text.H1>Create a new account</Text.H1>
           <Text.P>Join the TIZ community and start sharing your ideas.</Text.P>
         </Space.Flex>
-        <Input.Wrapper>
-          <GTInput.Text
-            minChars="50"
-            maxChars="150"
-            minWords="2"
-            maxWords="5"
-            name="name"
-            label="Your Name"
-          />
+        <Space.FullSpace>
+          <Input.Wrapper>
+            <GTInput.Text
+              minChars="10"
+              maxChars="20"
+              minWords="2"
+              maxWords="5"
+              name="name"
+              label="Your Name"
+            />
 
-          <GTInput.Text
-            defaultValidation
-            validations={['noSpaces']}
-            name="nickname"
-            label="Nickname"
-          />
+            <GTInput.Text
+              defaultValidation
+              validations={['noSpaces']}
+              name="nickname"
+              label="Nickname"
+            />
 
-          <GTInput.Email name="email" label="Email" />
+            <GTInput.Email name="email" label="Email" />
 
-          <GTInput.Password name="password" label="Password" />
-        </Input.Wrapper>
+            <GTInput.Password name="password" label="Password" />
+          </Input.Wrapper>
+        </Space.FullSpace>
         <Space.Flex>
           <Text.P sm>
             By creating your Tiz account, you agree to our Terms, Data Policy and Cookies Policy.
@@ -101,7 +103,21 @@ LoginCreate.defaultProps = {
   setIsCreate: () => {}
 };
 
+const signInFields = ['password', 'nickname'];
 function LoginSignIn({ canSave, setIsCreate }) {
+  const { setErrors, pageState } = useContext(GTPageStateContext);
+
+  useEffect(() => {
+    setErrors((prevErr) => {
+      const newErr = prevErr.filter((err) => signInFields.includes(err));
+      return newErr;
+    });
+  }, [setErrors]);
+
+  const handleSignIn = useCallback(() => {
+    console.log(pageState, 'handleSignIn');
+  }, [pageState]);
+
   return (
     <Login.BoxMain>
       <Login.BoxWrapper>
@@ -123,7 +139,9 @@ function LoginSignIn({ canSave, setIsCreate }) {
         </Space.FullSpace>
         <Space.Flex>
           <Space.FullSpace>
-            <Button.NormalShadow disabled={!canSave}>Sign In</Button.NormalShadow>
+            <Button.NormalShadow onClick={handleSignIn} disabled={!canSave}>
+              Sign In
+            </Button.NormalShadow>
           </Space.FullSpace>
 
           <Space.Center>

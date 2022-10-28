@@ -5,9 +5,12 @@ function useValidateState(name, inputValidations) {
   const { setPageState, setErrors } = useContext(GTPageStateContext);
 
   useEffect(() => {
+    let inputVal = {};
+
     setPageState((prevState) => {
       // if already has a value, keep it
       const prevVal = prevState[name] || '';
+      inputVal = prevVal;
 
       // add a key to the obj
       const newState = { ...prevState, [name]: prevVal };
@@ -16,8 +19,19 @@ function useValidateState(name, inputValidations) {
 
     // if it has a required validation, add a key to the errors obj
     if (inputValidations.includes('required')) {
-      setErrors((prevState) => {
-        const newState = [...prevState, name];
+      setErrors((prevErrors) => {
+        // the value is valid, so it should not be in the errors obj
+        if (inputVal) {
+          const newState = prevErrors.filter((error) => error !== name);
+          return newState;
+        }
+
+        // if it already has a value, don't add a repeat key
+        if (prevErrors.includes(name)) {
+          return prevErrors;
+        }
+
+        const newState = [...prevErrors, name];
         return newState;
       });
     }
@@ -32,12 +46,22 @@ function useValidateState(name, inputValidations) {
       }));
 
       if (isValid) {
-        setErrors((prevState) => {
-          const newErrors = prevState.filter((error) => error !== name);
+        setErrors((prevErrors) => {
+          // if it doesn't have a key, don't remove it
+          if (!prevErrors.includes(name)) {
+            return prevErrors;
+          }
+
+          const newErrors = prevErrors.filter((error) => error !== name);
           return newErrors;
         });
       } else {
         setErrors((prevState) => {
+          // if already has a value, don't add it
+          if (prevState.includes(name)) {
+            return prevState;
+          }
+
           const newErrors = [...prevState, name];
           return newErrors;
         });

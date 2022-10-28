@@ -61,8 +61,6 @@ const LoginBoxMain = styled.main`
     top: 0;
   }
 
-  /* it can be the front or back mirror
-  depending on the props */
   transform: rotateY(180deg);
   
   /* add animation based on the mirror */
