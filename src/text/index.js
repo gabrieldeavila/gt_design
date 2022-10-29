@@ -1,5 +1,5 @@
 /* eslint-disable operator-linebreak */
-import styled, { css } from 'styled-components';
+import styled, { css } from 'styled-components/macro';
 import { space, fontSize } from 'styled-system';
 
 const P = styled.p`
@@ -33,7 +33,7 @@ const H1Contrast = styled.h1`
   ${h1Css}
 `;
 
-// a simple btn that is used to only call a function or navigate to a page
+// a simple btn that is used to call a function or navigate to a page
 const Btn = styled.button`
   background: none;
   border: none;
@@ -43,6 +43,7 @@ const Btn = styled.button`
   font-family: 'Kanit', sans-serif;
   width: fit-content;
   height: fit-content;
+  color: ${(props) => props.theme.textBtn};
   border-radius: 0.25rem;
 `;
 

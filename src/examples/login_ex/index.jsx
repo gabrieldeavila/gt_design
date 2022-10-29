@@ -1,6 +1,6 @@
 /* eslint-disable react/no-unescaped-entities */
 import { PropTypes } from 'prop-types';
-import React, { useCallback, useContext, useEffect, useMemo, useState } from 'react';
+import React, { useCallback, useContext, useEffect, useMemo, useRef, useState } from 'react';
 import Button from '../../button';
 import GTPageStateProvider, { GTPageStateContext } from '../../context/pageState';
 import Input from '../../input';
@@ -14,7 +14,7 @@ function LoginEx() {
   const [pageState, setPageState] = useState({});
   const [errors, setErrors] = useState([]);
   const [isCreate, setIsCreate] = useState(true);
-
+  const heightRef = useRef({});
   const canSave = useMemo(() => errors.length === 0, [errors]);
 
   return (
@@ -29,12 +29,12 @@ function LoginEx() {
       <Login.Wrapper>
         <GTSwitchThemes />
         <Login.BoxContrast />
-        <Login.BoxPrimary />
+        <Login.BoxPrimary height={heightRef.current?.clientHeight || 0} />
 
         {isCreate ? (
-          <LoginCreate setIsCreate={setIsCreate} canSave={canSave} />
+          <LoginCreate loginRef={heightRef} setIsCreate={setIsCreate} canSave={canSave} />
         ) : (
-          <LoginSignIn setIsCreate={setIsCreate} canSave={canSave} />
+          <LoginSignIn loginRef={heightRef} setIsCreate={setIsCreate} canSave={canSave} />
         )}
       </Login.Wrapper>
     </GTPageStateProvider>
@@ -43,9 +43,9 @@ function LoginEx() {
 
 export default LoginEx;
 
-function LoginCreate({ setIsCreate, canSave }) {
+function LoginCreate({ setIsCreate, canSave, loginRef }) {
   return (
-    <Login.BoxMain>
+    <Login.BoxMain ref={loginRef}>
       <Login.BoxWrapper>
         <Space.Flex>
           <Text.H1>Create a new account</Text.H1>
@@ -95,7 +95,8 @@ function LoginCreate({ setIsCreate, canSave }) {
 
 LoginCreate.propTypes = {
   canSave: PropTypes.bool,
-  setIsCreate: PropTypes.func
+  setIsCreate: PropTypes.func,
+  loginRef: PropTypes.object.isRequired
 };
 
 LoginCreate.defaultProps = {
@@ -104,7 +105,7 @@ LoginCreate.defaultProps = {
 };
 
 const signInFields = ['password', 'nickname'];
-function LoginSignIn({ canSave, setIsCreate }) {
+function LoginSignIn({ canSave, setIsCreate, loginRef }) {
   const { setErrors, pageState } = useContext(GTPageStateContext);
 
   useEffect(() => {
@@ -119,7 +120,7 @@ function LoginSignIn({ canSave, setIsCreate }) {
   }, [pageState]);
 
   return (
-    <Login.BoxMain>
+    <Login.BoxMain ref={loginRef}>
       <Login.BoxWrapper>
         <Space.Flex>
           <Text.H1>Sign in to Tiz</Text.H1>
@@ -157,7 +158,8 @@ function LoginSignIn({ canSave, setIsCreate }) {
 
 LoginSignIn.propTypes = {
   canSave: PropTypes.bool,
-  setIsCreate: PropTypes.func
+  setIsCreate: PropTypes.func,
+  loginRef: PropTypes.object.isRequired
 };
 
 LoginSignIn.defaultProps = {

@@ -8,7 +8,6 @@ import shadows from '../utils/shadows';
 
 const LoginWrapper = styled.div`
   position: relative;
-  width: 100vw;
   height: 100vh;
   ${flex.column}
 
@@ -39,6 +38,15 @@ const LoginBoxPrimary = styled.div`
   bottom: 0%;
   left: 0;
   right: 0;
+
+  @media (max-width: 1500px) {
+    height: ${(props) => props.height - props.height * 0.30}px;
+  }
+
+  /* if is mobile, doesnt care about the height */
+  @media (max-width: 1000px) {
+    height: auto;
+  }
 `;
 
 const LoginBoxMain = styled.main`
@@ -53,16 +61,20 @@ const LoginBoxMain = styled.main`
   ${flex.alignCenter}
   gap: 2.5rem;
 
+  @media (max-width: 1700px) {
+    top: 5%;
+  }
+
   @media (max-width: 1000px) {
     width: 100%;
-    bottom: 0;
+    min-height: 100vh;
     left: 0;
     right: 0;
     top: 0;
   }
 
   transform: rotateY(180deg);
-  
+
   /* add animation based on the mirror */
   animation: mirrorFace 1s forwards;
 
@@ -84,6 +96,11 @@ const LoginBoxWrapper = styled.div`
   ${flex.alignCenter}
   ${flex.wrapGap}
   justify-content: space-evenly;
+
+  /* when it's mobile */
+  @media (max-width: 1000px) {
+    padding-top: 6rem;
+  }
 `;
 
 export default {
