@@ -1,17 +1,17 @@
-/* eslint-disable no-unused-vars */
 /* eslint-disable react/jsx-one-expression-per-line */
 /* eslint-disable react/jsx-closing-bracket-location */
-import React, { useEffect, useMemo, useRef, useState } from 'react';
-import { motion, useAnimation, useInView } from 'framer-motion';
+import { useAnimation, useInView } from 'framer-motion';
 import { PropTypes } from 'prop-types';
+import React, { useEffect, useMemo, useRef, useState } from 'react';
 import Box from '../../box';
 import Content from '../../Content';
 import GTModal from '../../modal/gt';
 import GTNavbar from '../../navbar/gt';
 import Text from '../../text';
 // import LoaderEx from '../loader';
-import GTSwitchThemes from '../../switch/gt';
 import Motion from '../../motion';
+import GTSwitchThemes from '../../switch/gt';
+import randomNumber from '../../utils/randomNumber';
 
 function Page() {
   const [showModal, setShowModal] = useState(false);
@@ -31,7 +31,6 @@ function Page() {
               '#444c38',
               '#32174d',
               '#1c2841',
-              '#008080',
               '#5f9ea0',
               '#6495ed',
               '#191970',
@@ -58,7 +57,6 @@ function Page() {
               '#00ced1',
               '#00bfff',
               '#00ffff',
-              '#5f9ea0',
               '#ff00ff'
             ].map((bg, index) => (
               <BoxMotion bg={bg} key={bg} number={index} />
@@ -79,12 +77,12 @@ function BoxMotion({ bg, number }) {
   const control = useAnimation();
   const ref = useRef(null);
   const isInView = useInView(ref);
-  const spanHeight = useMemo(() => Math.floor(Math.random() * 10) + 10, []);
+  const spanHeight = useMemo(() => randomNumber(10, 20), []);
 
   const boxVariant = useMemo(
     () => ({
       visible: { opacity: 1, scale: 1, rotate: 0, transition: { duration: 0.2 } },
-      hidden: { opacity: 0, scale: 0, rotate: Math.floor(Math.random() * 10) + 90 }
+      hidden: { opacity: 0, scale: 0 }
     }),
     []
   );
@@ -101,7 +99,12 @@ function BoxMotion({ bg, number }) {
 
   return (
     <Motion.Wrapper span={spanHeight}>
-      <Motion.Container ref={ref} variants={boxVariant} initial="hidden" animate={control}>
+      <Motion.Container
+        layoutId={number}
+        ref={ref}
+        variants={boxVariant}
+        initial="hidden"
+        animate={control}>
         <Box.Container bg={bg}>
           <Text.H1>{number}</Text.H1>
         </Box.Container>
