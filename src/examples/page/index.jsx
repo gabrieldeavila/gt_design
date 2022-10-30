@@ -28,7 +28,7 @@ function Page() {
         </Content.Container>
       </Content.Wrapper>
 
-      <GTSwitchThemes fixed place="bottom" />
+      <GTSwitchThemes fixed placeX="bottom" placeY="left" />
     </>
   );
 }

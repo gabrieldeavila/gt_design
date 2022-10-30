@@ -1,7 +1,14 @@
 import { transparentize } from 'polished';
-import styled from 'styled-components/macro';
+import styled, { css } from 'styled-components/macro';
 import flex from '../utils/flex';
 import transitions from '../utils/transitions';
+
+const fixedIcon = css`
+  position: fixed;
+
+  ${({ placeX }) => [placeX]} : 1rem;
+  ${({ placeY }) => [placeY]} : 1rem;
+`;
 
 const SwitchLabel = styled.label`
   margin-top: 1rem;
@@ -16,6 +23,8 @@ const SwitchLabel = styled.label`
   cursor: pointer;
 
   ${flex.alignCenter}
+
+  ${({ fixed }) => fixed && fixedIcon}
 `;
 
 const SwitchSlider = styled.span`
