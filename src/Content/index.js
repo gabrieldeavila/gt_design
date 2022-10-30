@@ -6,6 +6,7 @@ const ContentWrapper = styled.div`
   width: 100%;
   min-height: calc(100vh - 4rem);
   padding-top: 4rem;
+  padding-bottom: 3rem;
 
   @media (max-width: 768px) {
     padding-bottom: 5rem;

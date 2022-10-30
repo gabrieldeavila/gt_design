@@ -24,7 +24,7 @@ const BoxContainer = styled.div`
   ${flex.wrapGap};
   ${flex.column};
   ${shadows.simple}
-  grid-row-end: span ${(props) => props.span || Math.floor(Math.random() * 10) + 20};
+  grid-row-end: span ${(props) => props.span || Math.floor(Math.random() * 10) + 10};
 `;
 
 const BoxColumn = styled.div`

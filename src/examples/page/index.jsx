@@ -18,7 +18,7 @@ function Page() {
       <Content.Wrapper>
         <Content.Container>
           <Box.Column>
-            {[1, 2, 3, 4, 6, 7, 8].map((i) => (
+            {[1, 2, 3, 4, 6, 7, 8, 2, 2, 32, 1, 321].map((i) => (
               <Box.Container>
                 <Text.H1>Heading {i}</Text.H1>
               </Box.Container>

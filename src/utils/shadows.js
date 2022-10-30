@@ -12,7 +12,8 @@ const glow = css`
 `;
 
 const simple = css`
-  box-shadow: rgba(0, 0, 0, 0.02) 0px 1px 3px 0px, rgba(27, 31, 35, 0.15) 0px 0px 0px 1px;
+  box-shadow: ${(props) => transparentize(0.98, props.theme.btnShadow)} 0px 1px 3px 0px,
+    ${(props) => transparentize(0.85, props.theme.btnShadow)} 0px 0px 0px 1px;
 `;
 
 export default {

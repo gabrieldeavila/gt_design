@@ -7,7 +7,7 @@ const fixedIcon = css`
   position: fixed;
 
   ${({ placeX }) => [placeX]} : 1rem;
-  ${({ placeY }) => [placeY]} : 1rem;
+  ${({ placeY }) => [placeY]} : 1.5rem;
 `;
 
 const SwitchLabel = styled.label`
