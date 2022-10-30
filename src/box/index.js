@@ -1,6 +1,9 @@
-import styled from 'styled-components/macro';
+import { getLuminance, transparentize } from 'polished';
+import styled, { css } from 'styled-components/macro';
+import { color } from 'styled-system';
 import flex from '../utils/flex';
 import shadows from '../utils/shadows';
+import hovers from '../utils/hovers';
 
 const BoxGroup = styled.div`
   ${flex.alignCenter}
@@ -16,23 +19,56 @@ const BoxWrapper = styled.div`
   }
 `;
 
+const handleColorContrast = css`
+  /* find the right contrast to a background, based in the luma */
+  color: ${(props) => {
+    // bg is #e0ffff
+    const { bg } = props;
+
+    const luminance = getLuminance(bg);
+
+    if (luminance > 0.5) {
+      return 'black !important';
+    }
+
+    return 'white !important';
+  }};
+`;
+
 const BoxContainer = styled.div`
-  background: ${(props) => props.theme.primary};
   margin: 1rem;
   padding: 3rem;
   border-radius: 0.25rem;
   ${flex.wrapGap};
   ${flex.column};
-  ${shadows.simple}
+  ${shadows.simple} // which one is better?
+  box-shadow: 0 0 10px 1px rgba(0, 0, 0, 0.25);
   grid-row-end: span ${(props) => props.span || Math.floor(Math.random() * 10) + 10};
+  ${color};
+  background-color: ${(props) => transparentize(0.45, props.bg || props.theme.primary)}; 
+  backdrop-filter: blur(15px);
+  cursor: pointer;
+
+  &:hover {
+    ${hovers.scaleTransYOpacity}
+  }
+
+  /* add contrast to children */
+  & > * {
+    ${handleColorContrast}
+  }
 `;
 
 const BoxColumn = styled.div`
   /* a grid like pinterest, where it does not care about the biggest height */
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-  grid-auto-rows: 10px;
-  grid-gap: 1rem;
+  grid-auto-rows: 0.5rem;
+  grid-gap: 0.5rem;
+
+  ${BoxContainer} {
+    margin: 0.25rem;
+  }
 `;
 
 export default {

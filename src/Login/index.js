@@ -32,7 +32,7 @@ const LoginBoxContrast = styled.div`
 `;
 
 const LoginBoxPrimary = styled.div`
-  background: ${(props) => props.theme.loginBoxPrimary};
+  background: ${(props) => props.theme.pageBackground};
   position: absolute;
   top: 50%;
   bottom: 0%;

@@ -19,13 +19,15 @@ const darkThemeStyle = {
   loginBoxPrimary: '',
   errorColor: '#cd853f',
   btnShadow: '#ffff',
-  textBtn: '#77b5fe'
+  textBtn: '#77b5fe',
+  containerMain: '#36454f',
+  containerSecondary: '#242124',
 };
 
 function App() {
   const [darkTheme, setDarkTheme] = useState(localStorage.getItem('darkTheme') === '1');
   const loginOrPage = localStorage.getItem('loginOrPage') === '1';
-  console.log(loginOrPage, loginOrPage);
+
   return (
     <GtProvider darkTheme={darkTheme} setDarkTheme={setDarkTheme}>
       <GtDesign theme={darkTheme && darkThemeStyle}>

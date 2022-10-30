@@ -19,6 +19,8 @@ const defaultTheme = {
   loginBackground2: 'rgba(167, 123, 243, 1)',
   loginBackground3: 'rgba(156, 194, 239, 1)',
   textBtn: '#89cff0',
+  containerMain: '#f0f8ff',
+  containerSecondary: '#f0fff0',
 };
 function GtDesign({ theme, children }) {
   const themeStyle = { ...defaultTheme, ...theme };
