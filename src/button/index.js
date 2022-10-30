@@ -42,6 +42,7 @@ const ButtonNormal = styled.button`
   ${resetBtn};
   background: ${(props) => props.theme.primary};
   color: ${(props) => props.theme.contrast};
+  ${shadows.simple}
 `;
 
 const ButtonNormalShadow = styled(ButtonNormal)`
@@ -50,7 +51,7 @@ const ButtonNormalShadow = styled(ButtonNormal)`
 
 const ButtonContrast = styled.button`
   ${resetBtn};
-  ${shadows.basic}
+  ${shadows.simple}
   background: ${(props) => props.theme.contrast};
   color: ${(props) => props.theme.primary};
 

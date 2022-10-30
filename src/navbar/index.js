@@ -15,7 +15,7 @@ const NavbarWrapper = styled.nav`
   z-index: 1100;
   background: ${(props) => transparentize(0.5, props.theme.primary)};
   padding: 0.5rem 1.5rem;
-  ${shadows.basic}
+  ${shadows.simple}
   ${color}
   ${space}
   ${flexbox}
@@ -52,6 +52,7 @@ const NavbarOptions = styled.div`
 `;
 
 const NavbarOption = styled.div`
+  cursor: pointer;
   border-radius: 0.5rem;
   ${transitions.basic}
   ${flex.alignCenterCol}

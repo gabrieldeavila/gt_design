@@ -3,7 +3,7 @@ import { color } from 'styled-system';
 
 const GTContainer = styled.div`
   ${color}
-  background: ${(props) => props.theme.secundary};
+  background: ${(props) => props.theme.pageBackground};
 `;
 
 export default GTContainer;

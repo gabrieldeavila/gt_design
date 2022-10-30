@@ -3,7 +3,8 @@ import { ThemeProvider } from 'styled-components';
 import GTContainer from '../gtContainer';
 
 const defaultTheme = {
-  primary: '#FFFFFF',
+  primary: '#ffffff',
+  pageBackground: '#f0f8ff',
   secundary: '#fefefa',
   contrast: '#000000',
   backgroundHover: '#f5f5f5',
@@ -17,7 +18,7 @@ const defaultTheme = {
   loginBackground1: 'rgba(125, 197, 193, 1)',
   loginBackground2: 'rgba(167, 123, 243, 1)',
   loginBackground3: 'rgba(156, 194, 239, 1)',
-  textBtn: '#89cff0    ',
+  textBtn: '#89cff0',
 };
 function GtDesign({ theme, children }) {
   const themeStyle = { ...defaultTheme, ...theme };

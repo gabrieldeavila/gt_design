@@ -11,6 +11,14 @@ const Flex = styled.div`
   ${space}
 `;
 
+const FlexCenter = styled(Flex)`
+  ${flex.alignCenter}
+`;
+
+const FlexCenterRow = styled(Flex)`
+  ${flex.alignCenterCol}
+`;
+
 const FullSpace = styled.div`
   width: -webkit-fill-available;
   height: fit-content;
@@ -27,6 +35,8 @@ const Center = styled.div`
 
 export default {
   Flex,
+  FlexCenter,
+  FlexCenterRow,
   FullSpace,
   Center
 };
