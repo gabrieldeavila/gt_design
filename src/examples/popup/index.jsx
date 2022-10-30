@@ -1,20 +1,32 @@
-import React, { useCallback } from 'react';
+import React, { useCallback, useRef, useState } from 'react';
+import * as Icon from 'react-feather';
 import Popup from '../../popup';
+import Space from '../../space';
 import Symbol from '../../symbol';
 
 function SymbolPopup() {
-  const [open, setOpen] = React.useState(false);
+  const [open, setOpen] = useState(false);
 
-  const ref = React.useRef(null);
+  const ref = useRef(null);
 
   const handleOpen = useCallback(() => {
     setOpen(true);
   }, []);
 
+  const handleClose = useCallback(() => {
+    setOpen(false);
+  }, []);
+
   return (
-    <Symbol.Wrapper ref={ref} onClick={handleOpen}>
+    <Symbol.Wrapper ref={ref}>
       <Symbol.Container>
-        <Symbol.Image src="https://thispersondoesnotexist.com/image" />
+        {!open ? (
+          <Symbol.Image onClick={handleOpen} src="https://thispersondoesnotexist.com/image" />
+        ) : (
+          <Space.FullSpace p={10}>
+            <Icon.X onClick={handleClose} />
+          </Space.FullSpace>
+        )}
       </Symbol.Container>
 
       <Popup.Wrapper avoidComponents={[ref]} open={open} setOpen={setOpen}>

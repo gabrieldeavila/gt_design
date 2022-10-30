@@ -27,6 +27,8 @@ const FullSpace = styled.div`
     width: 100%;
     height: 100%;
   }
+
+  ${space}
 `;
 
 const Center = styled.div`

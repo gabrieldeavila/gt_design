@@ -21,6 +21,12 @@ const SymbolContainer = styled.div`
   &:hover {
     opacity: 0.5 ;
   }
+
+  /* add background red on child */
+  > *, svg {
+    color: ${(props) => props.theme.primary} !important;
+    stroke: ${(props) => props.theme.primary} !important;
+  }
 `;
 
 const SymbolText = styled.p`

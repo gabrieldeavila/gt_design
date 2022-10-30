@@ -95,8 +95,6 @@ function BoxMotion({ bg, number }) {
     }
   }, [control, isInView]);
 
-  useEffect(() => {}, []);
-
   return (
     <Motion.Wrapper span={spanHeight}>
       <Motion.Container
