@@ -17,7 +17,8 @@
     "comma-dangle": "off",
     "no-console": "off",
     "react/forbid-prop-types": "off",
-    "object-curly-newline": "off"
+    "object-curly-newline": "off",
+    "no-debugger": "off"
     // "no-confusing-arrow": "off",
     // "implicit-arrow-linebreak": "off"
   }

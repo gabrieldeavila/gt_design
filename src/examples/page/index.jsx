@@ -1,6 +1,9 @@
+/* eslint-disable no-unused-vars */
 /* eslint-disable react/jsx-one-expression-per-line */
 /* eslint-disable react/jsx-closing-bracket-location */
-import React, { useState } from 'react';
+import React, { useEffect, useMemo, useRef, useState } from 'react';
+import { motion, useAnimation, useInView } from 'framer-motion';
+import { PropTypes } from 'prop-types';
 import Box from '../../box';
 import Content from '../../Content';
 import GTModal from '../../modal/gt';
@@ -8,6 +11,7 @@ import GTNavbar from '../../navbar/gt';
 import Text from '../../text';
 // import LoaderEx from '../loader';
 import GTSwitchThemes from '../../switch/gt';
+import Motion from '../../motion';
 
 function Page() {
   const [showModal, setShowModal] = useState(false);
@@ -49,11 +53,15 @@ function Page() {
               '#db7093',
               '#7b68ee',
               '#8a2be2',
-              '#4b0082'
-            ].map((b, index) => (
-              <Box.Container bg={b}>
-                <Text.H1>{index}</Text.H1>
-              </Box.Container>
+              '#4b0082',
+              '#008080',
+              '#00ced1',
+              '#00bfff',
+              '#00ffff',
+              '#5f9ea0',
+              '#ff00ff'
+            ].map((bg, index) => (
+              <BoxMotion bg={bg} key={bg} number={index} />
             ))}
           </Box.Column>
           <GTModal show={showModal} setShow={setShowModal} />
@@ -66,3 +74,43 @@ function Page() {
 }
 
 export default Page;
+
+function BoxMotion({ bg, number }) {
+  const control = useAnimation();
+  const ref = useRef(null);
+  const isInView = useInView(ref);
+  const spanHeight = useMemo(() => Math.floor(Math.random() * 10) + 10, []);
+
+  const boxVariant = useMemo(
+    () => ({
+      visible: { opacity: 1, scale: 1, rotate: 0, transition: { duration: 0.2 } },
+      hidden: { opacity: 0, scale: 0, rotate: Math.floor(Math.random() * 10) + 90 }
+    }),
+    []
+  );
+
+  useEffect(() => {
+    if (isInView) {
+      control.start('visible');
+    } else {
+      control.start('hidden');
+    }
+  }, [control, isInView]);
+
+  useEffect(() => {}, []);
+
+  return (
+    <Motion.Wrapper span={spanHeight}>
+      <Motion.Container ref={ref} variants={boxVariant} initial="hidden" animate={control}>
+        <Box.Container bg={bg}>
+          <Text.H1>{number}</Text.H1>
+        </Box.Container>
+      </Motion.Container>
+    </Motion.Wrapper>
+  );
+}
+
+BoxMotion.propTypes = {
+  bg: PropTypes.string.isRequired,
+  number: PropTypes.number.isRequired
+};

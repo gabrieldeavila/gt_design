@@ -43,12 +43,11 @@ const BoxContainer = styled.div`
   ${flex.column};
   ${shadows.simple} // which one is better?
   box-shadow: 0 0 10px 1px rgba(0, 0, 0, 0.25);
-  grid-row-end: span ${(props) => props.span || Math.floor(Math.random() * 10) + 10};
   ${color};
-  background-color: ${(props) => transparentize(0.45, props.bg || props.theme.primary)}; 
+  background-color: ${(props) => transparentize(0.45, props.bg || props.theme.primary)};
   backdrop-filter: blur(15px);
   cursor: pointer;
-
+  height: -webkit-fill-available;
   &:hover {
     ${hovers.scaleTransYOpacity}
   }
