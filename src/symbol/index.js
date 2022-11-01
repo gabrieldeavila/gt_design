@@ -22,7 +22,6 @@ const SymbolContainer = styled.div`
     opacity: 0.5 ;
   }
 
-  /* add background red on child */
   > *, svg {
     color: ${(props) => props.theme.primary} !important;
     stroke: ${(props) => props.theme.primary} !important;

@@ -18,6 +18,7 @@ const resetBtn = css`
   width: fit-content;
   padding: 1rem;
   border-radius: 0.25rem;
+  width: -webkit-fill-available;
 
   /* if it's disabled */
   ${({ disabled }) =>

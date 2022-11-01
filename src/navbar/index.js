@@ -74,28 +74,7 @@ const NavbarLeft = styled.div`
 
   ${NavbarOptions} {
     @media (max-width: 768px) {
-      position: fixed;
-      bottom: 0;
-      left: 0;
-      right: 0;
-      display: flex;
-      background: ${(props) => props.theme.backgroundMobileNav};
-      justify-content: center;
-      z-index: 1004;
-
-      ${NavbarOption} {
-        padding: 1.5rem;
-        cursor: pointer;
-        background: ${(props) => props.theme.primary};
-        ${flex.wrapGap}
-        gap: 0.5rem;
-        min-width: 5rem;
-        ${shadows.basic}
-        ${transitions.basic}
-        &:hover {
-          background: ${(props) => props.theme.backgroundHover};
-        }
-      }
+      display: none;
     }
   }
 `;

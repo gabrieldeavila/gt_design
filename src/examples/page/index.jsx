@@ -12,6 +12,7 @@ import Text from '../../text';
 import Motion from '../../motion';
 import GTSwitchThemes from '../../switch/gt';
 import randomNumber from '../../utils/randomNumber';
+import GTNavbarMobile from '../../navbar/gtMobile';
 
 function Page() {
   const [showModal, setShowModal] = useState(false);
@@ -65,7 +66,7 @@ function Page() {
           <GTModal show={showModal} setShow={setShowModal} />
         </Content.Container>
       </Content.Wrapper>
-
+      <GTNavbarMobile />
       <GTSwitchThemes fixed placeX="bottom" placeY="left" />
     </>
   );
