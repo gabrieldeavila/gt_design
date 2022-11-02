@@ -1,8 +1,8 @@
 import React, { useCallback, useRef, useState } from 'react';
 import * as Icon from 'react-feather';
-import Popup from '../../popup';
-import Space from '../../space';
-import Symbol from '../../symbol';
+import Popup from '../../components/popup';
+import Space from '../../components/space';
+import Symbol from '../../components/symbol';
 
 function SymbolPopup() {
   const [open, setOpen] = useState(false);

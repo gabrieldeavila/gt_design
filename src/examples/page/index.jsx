@@ -3,21 +3,21 @@
 import { useAnimation, useInView } from 'framer-motion';
 import { PropTypes } from 'prop-types';
 import React, { useEffect, useMemo, useRef, useState } from 'react';
-import Box from '../../box';
-import Content from '../../Content';
-import GTModal from '../../modal/gt';
-import GTNavbar from '../../navbar/gt';
-import Text from '../../text';
+import Content from '../../components/content';
 // import LoaderEx from '../loader';
-import Motion from '../../motion';
-import GTSwitchThemes from '../../switch/gt';
+import Box from '../../components/box';
+import GTModal from '../../components/modal/gt';
+import Motion from '../../components/motion';
+import GTNavbarMobile from '../../components/navbar/gtMobile';
+import GTNavbar from '../../components/navbar/gtNavbar';
+import GTSwitchThemes from '../../components/switch/gt';
+import Text from '../../components/text';
+import useIsMobile from '../../hooks/helpers/useIsMobile';
 import randomNumber from '../../utils/randomNumber';
-import GTNavbarMobile from '../../navbar/gtMobile';
-import useMobile from '../../hooks/useMobile';
 
 function Page() {
   const [showModal, setShowModal] = useState(false);
-  const isMobile = useMobile();
+  const isMobile = useIsMobile();
 
   return (
     <>

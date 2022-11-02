@@ -1,11 +1,9 @@
 import React, { useState } from 'react';
 import GtProvider from './context/gt';
-// import LoginEx from './examples/login_ex';
-// import Page from './examples/page';
-import GlobalStyle from './global/style';
-import GtDesign from './gtDesign';
 import Page from './examples/page/index';
 import LoginEx from './examples/login_ex/index';
+import GtDesign from './gt/gtDesign';
+import GlobalStyle from './gt/global/style';
 
 const darkThemeStyle = {
   primary: '#080808',

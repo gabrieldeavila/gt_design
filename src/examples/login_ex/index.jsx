@@ -1,14 +1,14 @@
 /* eslint-disable react/no-unescaped-entities */
 import { PropTypes } from 'prop-types';
 import React, { useCallback, useContext, useEffect, useMemo, useRef, useState } from 'react';
-import Button from '../../button';
+import Login from '../../components/login';
 import GTPageStateProvider, { GTPageStateContext } from '../../context/pageState';
-import Input from '../../input';
-import GTInput from '../../input/GTInput';
-import Login from '../../Login';
-import Space from '../../space';
-import GTSwitchThemes from '../../switch/gt';
-import Text from '../../text';
+import GTSwitchThemes from '../../components/switch/gt';
+import Space from '../../components/space';
+import Text from '../../components/text';
+import Input from '../../components/input';
+import GTInput from '../../components/input/GTInput';
+import Button from '../../components/button';
 
 function LoginEx() {
   const [pageState, setPageState] = useState({});
