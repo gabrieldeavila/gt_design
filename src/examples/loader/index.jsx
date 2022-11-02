@@ -1,5 +1,5 @@
 import React, { memo } from 'react';
-import Loader from '../../Loader';
+import Loader from '../../components/loader/index';
 
 function LoaderEx() {
   return <Loader />;

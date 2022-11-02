@@ -18,12 +18,6 @@ function GTInputText({
   maxChars,
   onChange
 }) {
-  const { labelIsUp, value, handleInputChange, handleInputBlur, handleInputFocus } =
-    useInputValues(name);
-
-  const [isValidText, setIsValidText] = useState(true);
-  const [errorMessage, setErrorMessage] = useState('');
-
   const inputValidations = useMemo(() => {
     if (defaultValidation) {
       return [...defaultValidationObj, ...validations];
@@ -32,14 +26,19 @@ function GTInputText({
     return validations;
   }, [defaultValidation, validations]);
 
+  const { validateState } = useValidateState(name, inputValidations);
+
+  const { labelIsUp, value, handleInputChange, handleInputBlur, handleInputFocus } =
+    useInputValues(name);
+
   const { validateText, validateMinAndMax } = useValidateText(
     minWords,
     maxWords,
     minChars,
     maxChars
   );
-
-  const { validateState } = useValidateState(name, inputValidations);
+  const [isValidText, setIsValidText] = useState(true);
+  const [errorMessage, setErrorMessage] = useState('');
 
   useEffect(() => {
     if (!value) return;
@@ -53,8 +52,6 @@ function GTInputText({
 
   const handleChange = useCallback(
     (e) => {
-      onChange(e);
-
       const { value: iVal } = e.target;
       const { isValid, invalidMessage } = validateText(iVal, inputValidations);
       const { isAllValid, invalidAllMessage } = validateMinAndMax(invalidMessage, isValid, iVal);
@@ -63,6 +60,8 @@ function GTInputText({
       setErrorMessage(invalidAllMessage);
       setIsValidText(isAllValid);
       handleInputChange(iVal);
+
+      onChange(e);
     },
     [onChange, validateText, inputValidations, validateMinAndMax, validateState, handleInputChange]
   );

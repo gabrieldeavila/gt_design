@@ -15,7 +15,17 @@ const defaultValidationObj = [
   'oneUppercase'
 ];
 
-function GTInputPassword({ name, label, defaultValidation, validations }) {
+function GTInputPassword({ name, label, defaultValidation, validations, onChange }) {
+  const inputValidations = useMemo(() => {
+    if (defaultValidation) {
+      return [...defaultValidationObj, ...validations];
+    }
+
+    return validations;
+  }, [defaultValidation, validations]);
+
+  const { validateState } = useValidateState(name, inputValidations);
+
   const { labelIsUp, value, handleInputChange, handleInputBlur, handleInputFocus } =
     useInputValues(name);
 
@@ -27,14 +37,6 @@ function GTInputPassword({ name, label, defaultValidation, validations }) {
 
   const type = useMemo(() => (showPassword ? 'text' : 'password'), [showPassword]);
 
-  const inputValidations = useMemo(() => {
-    if (defaultValidation) {
-      return [...defaultValidationObj, ...validations];
-    }
-
-    return validations;
-  }, [defaultValidation, validations]);
-
   useEffect(() => {
     if (!value) return;
 
@@ -44,8 +46,6 @@ function GTInputPassword({ name, label, defaultValidation, validations }) {
     setErrorMessage(invalidMessage);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
-
-  const { validateState } = useValidateState(name, inputValidations);
 
   const handleShowPassword = useCallback(() => {
     setShowPassword((prevState) => !prevState);
@@ -64,8 +64,10 @@ function GTInputPassword({ name, label, defaultValidation, validations }) {
       setIsValidPassword(isValid);
       setErrorMessage(invalidMessage);
       handleInputChange(pswVal);
+
+      onChange(e);
     },
-    [handleInputChange, inputValidations, validatePassword, validateState]
+    [handleInputChange, inputValidations, onChange, validatePassword, validateState]
   );
 
   return (
@@ -99,10 +101,12 @@ GTInputPassword.propTypes = {
   name: PropTypes.string.isRequired,
   label: PropTypes.string.isRequired,
   validations: PropTypes.arrayOf(PropTypes.string),
-  defaultValidation: PropTypes.bool
+  defaultValidation: PropTypes.bool,
+  onChange: PropTypes.func
 };
 
 GTInputPassword.defaultProps = {
   validations: defaultValidationObj,
-  defaultValidation: true
+  defaultValidation: true,
+  onChange: () => {}
 };

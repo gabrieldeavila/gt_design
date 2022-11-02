@@ -8,7 +8,7 @@ import useInputValues from '../../../hooks/pageState/useInputValues';
 
 const defaultValidationObj = ['required'];
 
-function GTInputEmail({ name, label, validations, defaultValidation }) {
+function GTInputEmail({ name, label, validations, defaultValidation, onChange }) {
   const inputValidations = useMemo(() => {
     if (defaultValidation) {
       return [...defaultValidationObj, ...validations];
@@ -17,14 +17,14 @@ function GTInputEmail({ name, label, validations, defaultValidation }) {
     return validations;
   }, [defaultValidation, validations]);
 
-  const [isValidEmail, setIsValidEmail] = useState(true);
-
   const { validateState } = useValidateState(name, inputValidations);
 
   const { labelIsUp, value, handleInputChange, handleInputBlur, handleInputFocus } =
     useInputValues(name);
 
   const { validateEmail } = useValidateEmail();
+  const [isValidEmail, setIsValidEmail] = useState(true);
+
   useEffect(() => {
     if (!value) return;
 
@@ -33,6 +33,7 @@ function GTInputEmail({ name, label, validations, defaultValidation }) {
     setIsValidEmail(isValid);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
+
   const handleChange = useCallback(
     (e) => {
       const { value: emailVal } = e.target;
@@ -41,8 +42,10 @@ function GTInputEmail({ name, label, validations, defaultValidation }) {
       validateState(isValid, emailVal);
       setIsValidEmail(isValid);
       handleInputChange(emailVal);
+
+      onChange(e);
     },
-    [validateEmail, inputValidations, validateState, handleInputChange]
+    [validateEmail, inputValidations, validateState, handleInputChange, onChange]
   );
 
   return (
@@ -70,10 +73,12 @@ GTInputEmail.propTypes = {
   name: PropTypes.string.isRequired,
   label: PropTypes.string.isRequired,
   validations: PropTypes.arrayOf(PropTypes.string),
-  defaultValidation: PropTypes.bool
+  defaultValidation: PropTypes.bool,
+  onChange: PropTypes.func
 };
 
 GTInputEmail.defaultProps = {
   validations: defaultValidationObj,
-  defaultValidation: true
+  defaultValidation: true,
+  onChange: () => {}
 };
