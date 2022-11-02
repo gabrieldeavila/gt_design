@@ -8,6 +8,8 @@ const GTContainer = styled.div`
     ${(props) => props.theme.containerSecondary}, 55%, 
     ${(props) => props.theme.containerMain} 
   );
+
+  min-height: 100vh;
 `;
 
 export default GTContainer;

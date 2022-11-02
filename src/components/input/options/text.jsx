@@ -7,7 +7,6 @@ import useValidateText from '../../../hooks/validation/useValidateText';
 import useValidateState from '../../../hooks/validation/useValidateState';
 
 const defaultValidationObj = ['required', 'noInitialSpace', 'noEndingSpaces'];
-
 function GTInputText({
   name,
   label,
@@ -16,7 +15,8 @@ function GTInputText({
   minWords,
   maxWords,
   minChars,
-  maxChars
+  maxChars,
+  onChange
 }) {
   const { labelIsUp, value, handleInputChange, handleInputBlur, handleInputFocus } =
     useInputValues(name);
@@ -53,6 +53,8 @@ function GTInputText({
 
   const handleChange = useCallback(
     (e) => {
+      onChange(e);
+
       const { value: iVal } = e.target;
       const { isValid, invalidMessage } = validateText(iVal, inputValidations);
       const { isAllValid, invalidAllMessage } = validateMinAndMax(invalidMessage, isValid, iVal);
@@ -62,7 +64,7 @@ function GTInputText({
       setIsValidText(isAllValid);
       handleInputChange(iVal);
     },
-    [validateText, inputValidations, validateMinAndMax, validateState, handleInputChange]
+    [onChange, validateText, inputValidations, validateMinAndMax, validateState, handleInputChange]
   );
 
   return (
@@ -89,6 +91,7 @@ export default memo(GTInputText);
 GTInputText.propTypes = {
   name: PropTypes.string.isRequired,
   label: PropTypes.string.isRequired,
+  onChange: PropTypes.func,
   validations: PropTypes.arrayOf(PropTypes.string),
   minWords: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
   maxWords: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
@@ -98,6 +101,7 @@ GTInputText.propTypes = {
 };
 
 GTInputText.defaultProps = {
+  onChange: () => {},
   validations: defaultValidationObj,
   minWords: 0,
   maxWords: 0,

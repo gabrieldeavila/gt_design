@@ -39,11 +39,16 @@ const ButtonWrapper = styled.div`
   ${flexbox}
 `;
 
+const btnOptions = css`
+  ${({ fitContent }) => fitContent && 'width: fit-content'}
+`;
+
 const ButtonNormal = styled.button`
   ${resetBtn};
   background: ${(props) => props.theme.primary};
   color: ${(props) => props.theme.contrast};
   ${shadows.simple}
+  ${btnOptions}
 `;
 
 const ButtonNormalShadow = styled(ButtonNormal)`
@@ -56,6 +61,7 @@ const ButtonContrast = styled.button`
   background: ${(props) => props.theme.contrast};
   color: ${(props) => props.theme.primary};
 
+  ${btnOptions}
   ${space};
 `;
 
