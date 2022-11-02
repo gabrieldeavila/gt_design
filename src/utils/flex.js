@@ -18,6 +18,11 @@ const justifyBetween = css`
   justify-content: space-between;
 `;
 
+const justifyEvenly = css`
+  display: flex;
+  justify-content: space-evenly;
+`;
+
 const wrapGap = css`
   display: flex;
   flex-wrap: wrap;
@@ -33,6 +38,7 @@ export default {
   alignCenter,
   alignCenterCol,
   justifyBetween,
+  justifyEvenly,
   wrapGap,
   column
 };

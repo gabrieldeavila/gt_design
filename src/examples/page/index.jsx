@@ -13,9 +13,12 @@ import Motion from '../../motion';
 import GTSwitchThemes from '../../switch/gt';
 import randomNumber from '../../utils/randomNumber';
 import GTNavbarMobile from '../../navbar/gtMobile';
+import useMobile from '../../hooks/useMobile';
 
 function Page() {
   const [showModal, setShowModal] = useState(false);
+  const isMobile = useMobile();
+
   return (
     <>
       <GTNavbar showModal={showModal} />
@@ -66,8 +69,8 @@ function Page() {
           <GTModal show={showModal} setShow={setShowModal} />
         </Content.Container>
       </Content.Wrapper>
-      <GTNavbarMobile />
-      <GTSwitchThemes fixed placeX="bottom" placeY="left" />
+
+      {!isMobile ? <GTSwitchThemes fixed placeX="bottom" placeY="left" /> : <GTNavbarMobile />}
     </>
   );
 }
