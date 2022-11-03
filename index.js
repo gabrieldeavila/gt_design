@@ -1,5 +1,5 @@
 /* eslint-disable linebreak-style */
-import Box from './components/box';
+import Box from './src/components/box';
 
 export default {
   Box

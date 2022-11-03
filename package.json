@@ -1,6 +1,6 @@
 {
   "name": "gt_design",
-  "version": "0.1.1",
+  "version": "0.1.0",
   "private": true,
   "lint": "eslint .",
   "lint:fix": "eslint --fix",
@@ -22,11 +22,6 @@
     "styled-reset": "^4.4.2",
     "styled-system": "^5.1.5",
     "web-vitals": "^2.1.4"
-  },
-  "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "eject": "react-scripts eject"
   },
   "eslintConfig": {
     "extends": [
@@ -56,5 +51,21 @@
     "eslint-plugin-react": "^7.28.0",
     "eslint-plugin-react-hooks": "^4.3.0",
     "prettier": "^2.7.1"
-  }
+  },
+  "description": "Projeto",
+  "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/gabrieldeavila/gt_design.git"
+  },
+  "keywords": [
+    "react",
+    "design"
+  ],
+  "author": "gabriel_gt",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/gabrieldeavila/gt_design/issues"
+  },
+  "homepage": "https://github.com/gabrieldeavila/gt_design#readme"
 }
