@@ -1,5 +1,5 @@
 import { css } from 'styled-components';
-import styled from 'styled-components/macro';
+import styled from 'styled-components';
 import { space } from 'styled-system';
 import flex from '../../utils/flex';
 

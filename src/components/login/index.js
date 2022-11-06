@@ -1,7 +1,7 @@
 /* eslint-disable operator-linebreak */
 /* eslint-disable implicit-arrow-linebreak */
 import { transparentize } from 'polished';
-import styled from 'styled-components/macro';
+import styled from 'styled-components';
 import Switch from '../switch';
 import flex from '../../utils/flex';
 import shadows from '../../utils/shadows';

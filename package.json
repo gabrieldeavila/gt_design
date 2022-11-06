@@ -1,27 +1,20 @@
 {
   "name": "gt_design",
-  "version": "0.1.2",
-  "private": true,
+  "version": "0.1.4",
+  "private": false,
   "lint": "eslint .",
   "lint:fix": "eslint --fix",
   "format": "prettier --write './**/*.{js,jsx,ts,tsx,css,md,json}' --config ./.prettierrc",
   "dependencies": {
-    "@testing-library/jest-dom": "^5.16.5",
-    "@testing-library/react": "^13.4.0",
-    "@testing-library/user-event": "^13.5.0",
     "framer-motion": "^7.6.2",
     "lodash": "^4.17.21",
     "polished": "^4.2.2",
     "prop-types": "^15.8.1",
-    "react": "^18.2.0",
-    "react-dom": "^18.2.0",
     "react-feather": "^2.0.10",
-    "react-intersection-observer": "^9.4.0",
-    "react-scripts": "5.0.1",
+    "react-scripts": "^5.0.1",
     "styled-components": "^5.3.6",
     "styled-reset": "^4.4.2",
-    "styled-system": "^5.1.5",
-    "web-vitals": "^2.1.4"
+    "styled-system": "^5.1.5"
   },
   "eslintConfig": {
     "extends": [
@@ -50,7 +43,9 @@
     "eslint-plugin-prettier": "^4.2.1",
     "eslint-plugin-react": "^7.28.0",
     "eslint-plugin-react-hooks": "^4.3.0",
-    "prettier": "^2.7.1"
+    "prettier": "^2.7.1",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0"
   },
   "description": "Projeto",
   "main": "index.js",

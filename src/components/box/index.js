@@ -1,5 +1,5 @@
 import { getLuminance, transparentize } from 'polished';
-import styled, { css } from 'styled-components/macro';
+import styled, { css } from 'styled-components';
 import { color } from 'styled-system';
 import flex from '../../utils/flex';
 import hovers from '../../utils/hovers';
@@ -70,7 +70,14 @@ const BoxColumn = styled.div`
   }
 `;
 
+const Corno = styled.div`
+  background-color: red;
+  width: 100%;
+  height: 100%;
+`;
+
 export default {
+  Corno,
   Group: BoxGroup,
   Wrapper: BoxWrapper,
   Container: BoxContainer,

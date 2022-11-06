@@ -1,5 +1,5 @@
 /* eslint-disable operator-linebreak */
-import styled, { css } from 'styled-components/macro';
+import styled, { css } from 'styled-components';
 import { space, fontSize } from 'styled-system';
 
 const P = styled.p`
