@@ -70,14 +70,7 @@ const BoxColumn = styled.div`
   }
 `;
 
-const Corno = styled.div`
-  background-color: red;
-  width: 100%;
-  height: 100%;
-`;
-
 export default {
-  Corno,
   Group: BoxGroup,
   Wrapper: BoxWrapper,
   Container: BoxContainer,
